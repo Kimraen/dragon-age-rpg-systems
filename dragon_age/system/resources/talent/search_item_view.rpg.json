@@ -1,7 +1,0 @@
-{
-  "id": "talent_search",
-  "type": "listItem",
-  "title": { "type": "stat", "stat": "talent_name" },
-  "subtitle": { "type": "stat", "stat": "talent_class" },
-  "first_line_extra": { "type": "enumeratedName", "enumerated_type": "da_talent_degree", "id": { "type": "stat", "stat": "talent_degree" } }
-}

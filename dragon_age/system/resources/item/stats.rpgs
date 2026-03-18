@@ -1,6 +1,0 @@
-base string item_name(name = "Name") = "";
-base string item_category(name = "Category") = "Adventuring Gear";
-base integer item_quantity(name = "Quantity", abbreviation = "Qty") = 1;
-base string item_cost(name = "Cost") = "1 CP";
-base decimal item_weight(name = "Weight (kg)") = 0.5;
-base string item_description(name = "Description") = "";

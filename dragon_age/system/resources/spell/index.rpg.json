@@ -1,9 +1,0 @@
-{
-  "type": "Resource",
-  "id": "spell",
-  "name": "Spell",
-  "plural": "Spells",
-  "abbreviation": "SP",
-  "core": true,
-  "color": "systemPurple"
-}

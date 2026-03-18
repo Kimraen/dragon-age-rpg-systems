@@ -1,8 +1,0 @@
-{
-  "type": "Resource",
-  "id": "item",
-  "name": "Item",
-  "plural": "Items",
-  "core": true,
-  "color": "systemGreen"
-}

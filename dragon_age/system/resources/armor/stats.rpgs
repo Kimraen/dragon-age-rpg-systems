@@ -1,7 +1,0 @@
-base string armor_name(name = "Name") = "";
-base string armor_type(name = "Type") = "light";
-base integer armor_rating_val(name = "Armor Rating", abbreviation = "AR") = 0;
-base integer armor_penalty_val(name = "Armor Penalty", abbreviation = "AP") = 0;
-base string armor_cost(name = "Cost") = "5 SP";
-base decimal armor_weight(name = "Weight (kg)") = 5.0;
-base string armor_notes(name = "Notes") = "";

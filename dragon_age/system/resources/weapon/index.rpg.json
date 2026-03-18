@@ -1,8 +1,0 @@
-{
-  "type": "Resource",
-  "id": "weapon",
-  "name": "Weapon",
-  "plural": "Weapons",
-  "core": true,
-  "color": "systemRed"
-}

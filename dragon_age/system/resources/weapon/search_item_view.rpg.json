@@ -1,8 +1,0 @@
-{
-  "id": "weapon_search",
-  "type": "listItem",
-  "title": { "type": "stat", "stat": "weapon_name" },
-  "subtitle": { "type": "enumeratedName", "enumerated_type": "da_weapon_group", "id": { "type": "stat", "stat": "weapon_group" } },
-  "first_line_extra": { "type": "stat", "stat": "damage_dice" },
-  "second_line_extra": { "type": "stat", "stat": "weapon_cost" }
-}

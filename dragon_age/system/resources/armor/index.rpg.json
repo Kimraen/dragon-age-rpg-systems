@@ -1,8 +1,0 @@
-{
-  "type": "Resource",
-  "id": "armor",
-  "name": "Armor",
-  "plural": "Armor & Shields",
-  "core": true,
-  "color": "systemBlue"
-}

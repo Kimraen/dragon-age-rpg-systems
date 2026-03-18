@@ -1,6 +1,0 @@
-{
-  "id": "talent_list",
-  "type": "listItem",
-  "title": { "type": "stat", "stat": "talent_name" },
-  "subtitle": { "type": "enumeratedName", "enumerated_type": "da_talent_degree", "id": { "type": "stat", "stat": "talent_degree" } }
-}
