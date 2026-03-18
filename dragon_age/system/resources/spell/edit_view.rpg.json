@@ -1,0 +1,16 @@
+{
+  "id": "spell_edit",
+  "type": "list",
+  "subviews": [
+    { "id": "sp_name_edit",   "type": "text", "text": { "type": "stat", "stat": "spell_name" },   "edit_stat": "spell_name",   "style": "title",  "hint": { "type": "constant", "value_type": "string", "value": "Spell Name" } },
+    { "id": "sp_school_edit", "type": "select", "stat": "spell_school", "options": "da_spell_school", "style": "dropdown" },
+    { "id": "sp_mp_ticker",   "type": "ticker", "stat": "mana_cost",     "label": { "type": "constant", "value_type": "string", "value": "Mana Cost" },     "min_value_allowed": 0, "max_value_allowed": 30, "should_auto_save": true },
+    { "id": "sp_tn_ticker",   "type": "ticker", "stat": "target_number", "label": { "type": "constant", "value_type": "string", "value": "Target Number" }, "min_value_allowed": 5, "max_value_allowed": 25, "should_auto_save": true },
+    { "id": "sp_ct_edit",  "type": "text", "text": { "type": "stat", "stat": "casting_time" }, "edit_stat": "casting_time", "style": "text", "label": { "type": "constant", "value_type": "string", "value": "Casting Time" } },
+    { "id": "sp_tgt_edit", "type": "text", "text": { "type": "stat", "stat": "target" },       "edit_stat": "target",       "style": "text", "label": { "type": "constant", "value_type": "string", "value": "Target" } },
+    { "id": "sp_rng_edit", "type": "text", "text": { "type": "stat", "stat": "range" },        "edit_stat": "range",        "style": "text", "label": { "type": "constant", "value_type": "string", "value": "Range" } },
+    { "id": "sp_dur_edit", "type": "text", "text": { "type": "stat", "stat": "duration" },     "edit_stat": "duration",     "style": "text", "label": { "type": "constant", "value_type": "string", "value": "Duration" } },
+    { "id": "sp_req_edit", "type": "text", "text": { "type": "stat", "stat": "requirements" }, "edit_stat": "requirements", "style": "text", "label": { "type": "constant", "value_type": "string", "value": "Requirements" } },
+    { "id": "sp_desc_edit","type": "text", "text": { "type": "stat", "stat": "description" },  "edit_stat": "description",  "style": "text", "label": { "type": "constant", "value_type": "string", "value": "Description" }, "hint": { "type": "constant", "value_type": "string", "value": "Full spell description..." } }
+  ]
+}

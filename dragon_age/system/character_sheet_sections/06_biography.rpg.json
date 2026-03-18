@@ -1,0 +1,91 @@
+{
+  "type": "CharacterSheetSection",
+  "id": "biography",
+  "view": {
+    "id": "bio_root",
+    "type": "list",
+    "subviews": [
+      {
+        "id": "identity_section",
+        "type": "section",
+        "header": [
+          { "id": "identity_header", "type": "text", "text": { "type": "constant", "value_type": "string", "value": "Identity" }, "style": "section" }
+        ],
+        "content": [
+          { "id": "bio_name",    "type": "text", "text": { "type": "stat", "stat": "character_name" }, "edit_stat": "character_name", "style": "text", "label": { "type": "constant", "value_type": "string", "value": "Name" } },
+          { "id": "bio_pronouns","type": "text", "text": { "type": "stat", "stat": "pronouns" },       "edit_stat": "pronouns",       "style": "text", "label": { "type": "constant", "value_type": "string", "value": "Pronouns" } },
+          { "id": "bio_age",     "type": "text", "text": { "type": "stat", "stat": "age" },            "edit_stat": "age",            "style": "text", "label": { "type": "constant", "value_type": "string", "value": "Age" } },
+          { "id": "bio_race",    "type": "text", "text": { "type": "enumeratedName", "enumerated_type": "da_race",       "id": { "type": "stat", "stat": "race" } },             "style": "text", "label": { "type": "constant", "value_type": "string", "value": "Race" } },
+          { "id": "bio_bg",      "type": "text", "text": { "type": "enumeratedName", "enumerated_type": "da_background", "id": { "type": "stat", "stat": "background" } },      "style": "text", "label": { "type": "constant", "value_type": "string", "value": "Background" } },
+          { "id": "bio_class",   "type": "text", "text": { "type": "enumeratedName", "enumerated_type": "da_class",      "id": { "type": "stat", "stat": "character_class" } }, "style": "text", "label": { "type": "constant", "value_type": "string", "value": "Class" } }
+        ],
+        "show_divider": true
+      },
+      {
+        "id": "appearance_section",
+        "type": "section",
+        "header": [
+          { "id": "appearance_header", "type": "text", "text": { "type": "constant", "value_type": "string", "value": "Appearance" }, "style": "section" }
+        ],
+        "content": [
+          { "id": "appearance_text", "type": "text", "text": { "type": "stat", "stat": "appearance" }, "edit_stat": "appearance", "style": "text", "hint": { "type": "constant", "value_type": "string", "value": "Describe your character's appearance..." } }
+        ],
+        "show_divider": true
+      },
+      {
+        "id": "goals_section",
+        "type": "section",
+        "header": [
+          { "id": "goals_header", "type": "text", "text": { "type": "constant", "value_type": "string", "value": "Goals" }, "style": "section" }
+        ],
+        "content": [
+          { "id": "goals_text", "type": "text", "text": { "type": "stat", "stat": "goals" }, "edit_stat": "goals", "style": "text", "hint": { "type": "constant", "value_type": "string", "value": "What drives your character forward?" } }
+        ],
+        "show_divider": true
+      },
+      {
+        "id": "ties_section",
+        "type": "section",
+        "header": [
+          { "id": "ties_header", "type": "text", "text": { "type": "constant", "value_type": "string", "value": "Ties" }, "style": "section" }
+        ],
+        "content": [
+          { "id": "ties_text", "type": "text", "text": { "type": "stat", "stat": "ties" }, "edit_stat": "ties", "style": "text", "hint": { "type": "constant", "value_type": "string", "value": "What connects your character to others?" } }
+        ],
+        "show_divider": true
+      },
+      {
+        "id": "backstory_section",
+        "type": "section",
+        "header": [
+          { "id": "backstory_header", "type": "text", "text": { "type": "constant", "value_type": "string", "value": "Background Story" }, "style": "section" }
+        ],
+        "content": [
+          { "id": "backstory_text", "type": "text", "text": { "type": "stat", "stat": "background_story" }, "edit_stat": "background_story", "style": "text", "hint": { "type": "constant", "value_type": "string", "value": "Write your character's history..." } }
+        ],
+        "show_divider": true
+      },
+      {
+        "id": "reputation_section",
+        "type": "section",
+        "header": [
+          { "id": "rep_header", "type": "text", "text": { "type": "constant", "value_type": "string", "value": "Reputation" }, "style": "section" }
+        ],
+        "content": [
+          { "id": "rep_stat", "type": "stat", "stat": "reputation", "style": "list" }
+        ],
+        "show_divider": true
+      },
+      {
+        "id": "notes_section",
+        "type": "section",
+        "header": [
+          { "id": "notes_header", "type": "text", "text": { "type": "constant", "value_type": "string", "value": "Notes" }, "style": "section" }
+        ],
+        "content": [
+          { "id": "notes_text", "type": "text", "text": { "type": "stat", "stat": "notes" }, "edit_stat": "notes", "style": "text", "hint": { "type": "constant", "value_type": "string", "value": "Session notes, reminders, etc." } }
+        ]
+      }
+    ]
+  }
+}

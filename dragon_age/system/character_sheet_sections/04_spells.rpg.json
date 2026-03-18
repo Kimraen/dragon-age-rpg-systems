@@ -1,0 +1,35 @@
+{
+  "type": "CharacterSheetSection",
+  "id": "spells",
+  "view": {
+    "id": "spells_root",
+    "type": "list",
+    "subviews": [
+      {
+        "id": "mana_summary",
+        "type": "section",
+        "header": [],
+        "content": [
+          { "id": "mana_display",     "type": "stat", "stat": "current_mana", "style": "block" },
+          { "id": "max_mana_display", "type": "stat", "stat": "max_mana",     "style": "block" }
+        ],
+        "content_item_min_width": 100
+      },
+      {
+        "id": "spells_note",
+        "type": "text",
+        "text": { "type": "constant", "value_type": "string", "value": "Mages begin with four spells. New spells are learned via training or at certain levels. Casting requires a Magic (spell school) test vs. target number. Failure on a 1,2,3 on the Dragon Die may cause a Mishap." },
+        "style": "caption"
+      },
+      {
+        "id": "spells_list_view",
+        "type": "resourceArray",
+        "resource_id": "spell",
+        "stat": "spells",
+        "view_type": "list",
+        "pop_up_type": "bottomSheet",
+        "pop_up_button_text": { "type": "constant", "value_type": "string", "value": "Add Spell" }
+      }
+    ]
+  }
+}

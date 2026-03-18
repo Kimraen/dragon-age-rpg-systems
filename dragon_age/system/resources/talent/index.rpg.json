@@ -1,0 +1,8 @@
+{
+  "type": "Resource",
+  "id": "talent",
+  "name": "Talent",
+  "plural": "Talents",
+  "core": true,
+  "color": "systemOrange"
+}

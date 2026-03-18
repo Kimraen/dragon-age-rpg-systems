@@ -1,0 +1,5 @@
+base string talent_name(name = "Name") = "";
+base string talent_degree(name = "Degree") = "novice";
+base string talent_class(name = "Class") = "";
+base string talent_requirement(name = "Requirement") = "";
+base string talent_description(name = "Description") = "";

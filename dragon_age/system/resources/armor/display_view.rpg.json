@@ -1,0 +1,21 @@
+{
+  "id": "armor_display",
+  "type": "list",
+  "subviews": [
+    { "id": "a_name",  "type": "text", "text": { "type": "stat", "stat": "armor_name" }, "style": "headline" },
+    { "id": "a_type_row", "type": "composite", "row_only": true, "subviews": [
+      { "id": "a_type_lbl", "type": "text", "text": { "type": "constant", "value_type": "string", "value": "Type: " }, "style": "subhead", "bold": true },
+      { "id": "a_type_val", "type": "text", "text": { "type": "enumeratedName", "enumerated_type": "da_armor_type", "id": { "type": "stat", "stat": "armor_type" } }, "style": "subhead" }
+    ]},
+    { "id": "a_stats_row", "type": "composite", "row_only": true, "subviews": [
+      { "id": "a_ar_stat", "type": "stat", "stat": "armor_rating_val",  "style": "block" },
+      { "id": "a_ap_stat", "type": "stat", "stat": "armor_penalty_val", "style": "block" }
+    ]},
+    { "id": "a_cost_row", "type": "composite", "row_only": true, "subviews": [
+      { "id": "a_cost_lbl", "type": "text", "text": { "type": "constant", "value_type": "string", "value": "Cost: " }, "style": "text", "bold": true },
+      { "id": "a_cost_val", "type": "text", "text": { "type": "stat", "stat": "armor_cost" }, "style": "text" }
+    ]},
+    { "id": "a_divider", "type": "divider" },
+    { "id": "a_notes", "type": "text", "text": { "type": "stat", "stat": "armor_notes" }, "style": "text" }
+  ]
+}

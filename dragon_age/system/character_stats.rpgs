@@ -1,0 +1,219 @@
+// ============================================================
+// DRAGON AGE RPG — CHARACTER STATS
+// ============================================================
+
+// ---- BASIC IDENTITY ----
+
+@party_visible
+base string character_name(name = "Name") = "";
+
+base string photo(name = "Photo") = "";
+base string pronouns(name = "Pronouns") = "";
+base string age(name = "Age") = "";
+
+@party_visible
+base integer level(name = "Level") = 1;
+
+base integer experience(name = "Experience", abbreviation = "XP") = 0;
+
+@party_visible
+base string character_class(name = "Class") = "";
+
+base string background(name = "Background") = "";
+base string race(name = "Race") = "";
+
+
+// ============================================================
+// CORE ABILITIES  (range: -2 to 4, higher at later levels)
+// ============================================================
+
+@party_visible
+base integer communication(name = "Communication", abbreviation = "COM") = 1;
+
+@party_visible
+base integer constitution(name = "Constitution", abbreviation = "CON") = 1;
+
+@party_visible
+base integer cunning(name = "Cunning", abbreviation = "CUN") = 1;
+
+@party_visible
+base integer dexterity(name = "Dexterity", abbreviation = "DEX") = 1;
+
+@party_visible
+base integer magic(name = "Magic", abbreviation = "MAG") = 1;
+
+@party_visible
+base integer perception(name = "Perception", abbreviation = "PER") = 1;
+
+@party_visible
+base integer strength(name = "Strength", abbreviation = "STR") = 1;
+
+@party_visible
+base integer willpower(name = "Willpower", abbreviation = "WIL") = 1;
+
+
+// ============================================================
+// ABILITY FOCUSES  (each grants +2 to the relevant ability)
+// ============================================================
+
+// -- Communication --
+base bool focus_com_animal_handling(name = "Animal Handling") = false;
+base bool focus_com_bargaining(name = "Bargaining") = false;
+base bool focus_com_deception(name = "Deception") = false;
+base bool focus_com_disguise(name = "Disguise") = false;
+base bool focus_com_etiquette(name = "Etiquette") = false;
+base bool focus_com_gambling(name = "Gambling") = false;
+base bool focus_com_investigation(name = "Investigation") = false;
+base bool focus_com_leadership(name = "Leadership") = false;
+base bool focus_com_performance(name = "Performance") = false;
+base bool focus_com_persuasion(name = "Persuasion") = false;
+base bool focus_com_seduction(name = "Seduction") = false;
+
+// -- Constitution --
+base bool focus_con_drinking(name = "Drinking") = false;
+base bool focus_con_running(name = "Running") = false;
+base bool focus_con_stamina(name = "Stamina") = false;
+base bool focus_con_swimming(name = "Swimming") = false;
+
+// -- Cunning --
+base bool focus_cun_arcane_lore(name = "Arcane Lore") = false;
+base bool focus_cun_brewing(name = "Brewing") = false;
+base bool focus_cun_calligraphy(name = "Calligraphy") = false;
+base bool focus_cun_cultural_lore(name = "Cultural Lore") = false;
+base bool focus_cun_engineering(name = "Engineering") = false;
+base bool focus_cun_evaluation(name = "Evaluation") = false;
+base bool focus_cun_healing(name = "Healing") = false;
+base bool focus_cun_heraldry(name = "Heraldry") = false;
+base bool focus_cun_historical_lore(name = "Historical Lore") = false;
+base bool focus_cun_military_lore(name = "Military Lore") = false;
+base bool focus_cun_natural_lore(name = "Natural Lore") = false;
+base bool focus_cun_navigation(name = "Navigation") = false;
+base bool focus_cun_qun(name = "Qun") = false;
+base bool focus_cun_religious_lore(name = "Religious Lore") = false;
+base bool focus_cun_research(name = "Research") = false;
+
+// -- Dexterity --
+base bool focus_dex_acrobatics(name = "Acrobatics") = false;
+base bool focus_dex_bows(name = "Bows") = false;
+base bool focus_dex_brawling(name = "Brawling") = false;
+base bool focus_dex_crafting(name = "Crafting") = false;
+base bool focus_dex_driving(name = "Driving") = false;
+base bool focus_dex_initiative(name = "Initiative") = false;
+base bool focus_dex_legerdemain(name = "Legerdemain") = false;
+base bool focus_dex_light_blades(name = "Light Blades") = false;
+base bool focus_dex_riding(name = "Riding") = false;
+base bool focus_dex_stealth(name = "Stealth") = false;
+base bool focus_dex_traps(name = "Traps") = false;
+
+// -- Magic --
+base bool focus_mag_arcane_lance(name = "Arcane Lance") = false;
+base bool focus_mag_blood_magic(name = "Blood Magic") = false;
+
+// -- Perception --
+base bool focus_per_empathy(name = "Empathy") = false;
+base bool focus_per_hearing(name = "Hearing") = false;
+base bool focus_per_searching(name = "Searching") = false;
+base bool focus_per_seeing(name = "Seeing") = false;
+base bool focus_per_tracking(name = "Tracking") = false;
+
+// -- Strength --
+base bool focus_str_axes(name = "Axes") = false;
+base bool focus_str_bludgeons(name = "Bludgeons") = false;
+base bool focus_str_climbing(name = "Climbing") = false;
+base bool focus_str_driving(name = "Driving") = false;
+base bool focus_str_heavy_blades(name = "Heavy Blades") = false;
+base bool focus_str_intimidation(name = "Intimidation") = false;
+base bool focus_str_jumping(name = "Jumping") = false;
+base bool focus_str_lances(name = "Lances") = false;
+base bool focus_str_might(name = "Might") = false;
+base bool focus_str_polearms(name = "Polearms") = false;
+base bool focus_str_smithing(name = "Smithing") = false;
+
+// -- Willpower --
+base bool focus_wil_courage(name = "Courage") = false;
+base bool focus_wil_faith(name = "Faith") = false;
+base bool focus_wil_morale(name = "Morale") = false;
+base bool focus_wil_self_discipline(name = "Self-Discipline") = false;
+
+
+// ============================================================
+// COMBAT STATS
+// ============================================================
+
+@party_visible
+base integer current_health(name = "Health", abbreviation = "HP") = 20;
+
+@party_visible
+base integer max_health(name = "Max Health") = 20;
+
+base integer current_mana(name = "Mana", abbreviation = "MP") = 0;
+base integer max_mana(name = "Max Mana") = 0;
+
+base integer armor_rating(name = "Armor Rating", abbreviation = "AR") = 0;
+base integer armor_penalty(name = "Armor Penalty") = 0;
+
+// Defense = 10 + Dexterity  (armor does NOT reduce defense, it reduces damage)
+@party_visible
+calc integer defense(name = "Defense", abbreviation = "DEF") = 10 + dexterity;
+
+// Speed = 10 + Dexterity, reduced by heavy armor's armor penalty
+@party_visible
+calc integer speed(name = "Speed") = 10 + dexterity - armor_penalty;
+
+// Magic Resistance: Dwarves/Qunari gain +2 on tests to resist spells.
+// Qunari/Tal-Vashoth: -1 to resist spells. Track here as a modifier.
+base integer magic_resistance_mod(name = "Magic Resistance Mod") = 0;
+
+
+// ============================================================
+// WEAPON GROUPS  (training allows use without penalty)
+// ============================================================
+
+base bool weapon_group_bludgeons(name = "Bludgeons") = false;
+base bool weapon_group_bows(name = "Bows") = false;
+base bool weapon_group_brawling(name = "Brawling") = false;
+base bool weapon_group_dueling(name = "Dueling") = false;
+base bool weapon_group_heavy_blades(name = "Heavy Blades") = false;
+base bool weapon_group_light_blades(name = "Light Blades") = false;
+base bool weapon_group_lances(name = "Lances") = false;
+base bool weapon_group_polearms(name = "Polearms") = false;
+base bool weapon_group_staves(name = "Staves") = false;
+base bool weapon_group_thrown(name = "Thrown") = false;
+
+
+// ============================================================
+// CURRENCY
+// ============================================================
+
+base integer gold_pieces(name = "Gold", abbreviation = "GP") = 0;
+base integer silver_pieces(name = "Silver", abbreviation = "SP") = 0;
+base integer copper_pieces(name = "Copper", abbreviation = "CP") = 0;
+
+
+// ============================================================
+// REPUTATION & MISC
+// ============================================================
+
+base integer reputation(name = "Reputation") = 0;
+
+
+// ============================================================
+// RESOURCE COLLECTIONS
+// ============================================================
+
+base resource<spell>[] spells(name = "Spells") = [];
+base resource<talent>[] talents(name = "Talents") = [];
+base resource<weapon>[] weapons(name = "Weapons") = [];
+base resource<armor>[] armors(name = "Armor") = [];
+base resource<item>[] items(name = "Equipment") = [];
+
+
+// ============================================================
+// BIOGRAPHY & NOTES
+// ============================================================
+
+base string goals(name = "Goals") = "";
+base string ties(name = "Ties") = "";
+base string background_story(name = "Background Story") = "";
+base string appearance(name = "Appearance") = "";
+base string notes(name = "Notes") = "";

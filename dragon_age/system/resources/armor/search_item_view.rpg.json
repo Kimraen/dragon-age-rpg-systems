@@ -1,0 +1,13 @@
+{
+  "id": "armor_search",
+  "type": "listItem",
+  "title": { "type": "stat", "stat": "armor_name" },
+  "subtitle": { "type": "enumeratedName", "enumerated_type": "da_armor_type", "id": { "type": "stat", "stat": "armor_type" } },
+  "first_line_extra": {
+    "type": "concat",
+    "components": { "type": "list", "components": [
+      { "type": "constant", "value_type": "string", "value": "AR " },
+      { "type": "stat", "stat": "armor_rating_val" }
+    ]}
+  }
+}

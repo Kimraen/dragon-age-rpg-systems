@@ -1,0 +1,11 @@
+{
+  "type": "EnumeratedType",
+  "id": "da_class",
+  "name": "Class",
+  "plural": "Classes",
+  "types": [
+    { "id": "mage",    "name": "Mage",    "abbreviation": "Mage" },
+    { "id": "rogue",   "name": "Rogue",   "abbreviation": "Rogue" },
+    { "id": "warrior", "name": "Warrior", "abbreviation": "Warrior" }
+  ]
+}

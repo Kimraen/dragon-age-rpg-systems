@@ -1,0 +1,54 @@
+{
+  "type": "CharacterCreationPage",
+  "title": "Background",
+  "view": {
+    "id": "background_creation_root",
+    "type": "list",
+    "subviews": [
+      {
+        "id": "bg_instruction",
+        "type": "text",
+        "text": { "type": "constant", "value_type": "string", "value": "Your background represents your culture and upbringing. It determines your race, available class choices, starting ability increases, and starting focuses. Refer to Chapter 1 of the rulebook for each background's full details." },
+        "style": "text"
+      },
+      {
+        "id": "bg_select_section",
+        "type": "section",
+        "header": [
+          { "id": "bg_select_header", "type": "text", "text": { "type": "constant", "value_type": "string", "value": "Choose Background" }, "style": "section" }
+        ],
+        "content": [
+          {
+            "id": "background_select",
+            "type": "select",
+            "stat": "background",
+            "options": "da_background",
+            "style": "list"
+          }
+        ]
+      },
+      {
+        "id": "race_select_section",
+        "type": "section",
+        "header": [
+          { "id": "race_select_header", "type": "text", "text": { "type": "constant", "value_type": "string", "value": "Race" }, "style": "section" }
+        ],
+        "content": [
+          {
+            "id": "race_select",
+            "type": "select",
+            "stat": "race",
+            "options": "da_race",
+            "style": "dropdown"
+          }
+        ]
+      },
+      {
+        "id": "bg_focuses_instruction",
+        "type": "text",
+        "text": { "type": "constant", "value_type": "string", "value": "After choosing your background, apply your ability score increases and starting focuses on the Abilities & Focuses page of your character sheet." },
+        "style": "text"
+      }
+    ]
+  }
+}

@@ -1,0 +1,53 @@
+{
+  "type": "CharacterCreationPage",
+  "title": "Basics",
+  "view": {
+    "id": "basics_root",
+    "type": "list",
+    "subviews": [
+      {
+        "id": "avatar_row",
+        "type": "composite",
+        "row_only": true,
+        "alignment": "center",
+        "subviews": [
+          {
+            "id": "char_avatar",
+            "type": "avatar",
+            "photo_stat": "photo",
+            "name_stat": "character_name",
+            "size": "massive",
+            "interactable": true
+          }
+        ]
+      },
+      {
+        "id": "name_field",
+        "type": "text",
+        "text": { "type": "stat", "stat": "character_name" },
+        "edit_stat": "character_name",
+        "style": "title",
+        "hint": { "type": "constant", "value_type": "string", "value": "Character Name" },
+        "label": { "type": "constant", "value_type": "string", "value": "Name" }
+      },
+      {
+        "id": "pronouns_field",
+        "type": "text",
+        "text": { "type": "stat", "stat": "pronouns" },
+        "edit_stat": "pronouns",
+        "style": "text",
+        "hint": { "type": "constant", "value_type": "string", "value": "e.g. she/her, he/him, they/them" },
+        "label": { "type": "constant", "value_type": "string", "value": "Pronouns" }
+      },
+      {
+        "id": "age_field",
+        "type": "text",
+        "text": { "type": "stat", "stat": "age" },
+        "edit_stat": "age",
+        "style": "text",
+        "hint": { "type": "constant", "value_type": "string", "value": "Character age" },
+        "label": { "type": "constant", "value_type": "string", "value": "Age" }
+      }
+    ]
+  }
+}

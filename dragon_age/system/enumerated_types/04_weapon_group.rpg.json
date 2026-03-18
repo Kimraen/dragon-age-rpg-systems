@@ -1,0 +1,18 @@
+{
+  "type": "EnumeratedType",
+  "id": "da_weapon_group",
+  "name": "Weapon Group",
+  "plural": "Weapon Groups",
+  "types": [
+    { "id": "bludgeons",    "name": "Bludgeons" },
+    { "id": "bows",         "name": "Bows" },
+    { "id": "brawling",     "name": "Brawling" },
+    { "id": "dueling",      "name": "Dueling" },
+    { "id": "heavy_blades", "name": "Heavy Blades" },
+    { "id": "light_blades", "name": "Light Blades" },
+    { "id": "lances",       "name": "Lances" },
+    { "id": "polearms",     "name": "Polearms" },
+    { "id": "staves",       "name": "Staves" },
+    { "id": "thrown",       "name": "Thrown" }
+  ]
+}

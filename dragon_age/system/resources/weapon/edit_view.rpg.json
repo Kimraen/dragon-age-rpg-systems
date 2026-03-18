@@ -1,0 +1,14 @@
+{
+  "id": "weapon_edit",
+  "type": "list",
+  "subviews": [
+    { "id": "w_name_edit",   "type": "text",   "text": { "type": "stat", "stat": "weapon_name" },   "edit_stat": "weapon_name",   "style": "title", "hint": { "type": "constant", "value_type": "string", "value": "Weapon Name" } },
+    { "id": "w_group_edit",  "type": "select", "stat": "weapon_group", "options": "da_weapon_group", "style": "dropdown" },
+    { "id": "w_dmg_edit",    "type": "text",   "text": { "type": "stat", "stat": "damage_dice" },   "edit_stat": "damage_dice",   "style": "text", "label": { "type": "constant", "value_type": "string", "value": "Damage Dice (e.g. 1d6)" } },
+    { "id": "w_dmgb_ticker", "type": "ticker", "stat": "damage_bonus",     "label": { "type": "constant", "value_type": "string", "value": "Damage Bonus" }, "min_value_allowed": -5, "max_value_allowed": 10, "should_auto_save": true },
+    { "id": "w_str_ticker",  "type": "ticker", "stat": "weapon_min_str",   "label": { "type": "constant", "value_type": "string", "value": "Min Strength" }, "min_value_allowed": -2, "max_value_allowed": 4,  "should_auto_save": true },
+    { "id": "w_cost_edit",   "type": "text",   "text": { "type": "stat", "stat": "weapon_cost" },   "edit_stat": "weapon_cost",   "style": "text", "label": { "type": "constant", "value_type": "string", "value": "Cost" } },
+    { "id": "w_wt_edit",     "type": "text",   "text": { "type": "stat", "stat": "weapon_weight" }, "edit_stat": "weapon_weight", "style": "text", "label": { "type": "constant", "value_type": "string", "value": "Weight (kg)" } },
+    { "id": "w_notes_edit",  "type": "text",   "text": { "type": "stat", "stat": "weapon_notes" },  "edit_stat": "weapon_notes",  "style": "text", "hint": { "type": "constant", "value_type": "string", "value": "Special properties, notes..." } }
+  ]
+}

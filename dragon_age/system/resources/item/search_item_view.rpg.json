@@ -1,0 +1,7 @@
+{
+  "id": "item_search",
+  "type": "listItem",
+  "title": { "type": "stat", "stat": "item_name" },
+  "subtitle": { "type": "stat", "stat": "item_category" },
+  "first_line_extra": { "type": "stat", "stat": "item_cost" }
+}

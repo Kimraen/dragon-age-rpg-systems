@@ -1,0 +1,86 @@
+{
+  "type": "CharacterSheetSection",
+  "id": "overview",
+  "view": {
+    "id": "overview_root",
+    "type": "list",
+    "subviews": [
+      {
+        "id": "avatar_section",
+        "type": "avatarSection",
+        "center_content": [
+          {
+            "id": "char_avatar",
+            "type": "avatar",
+            "photo_stat": "photo",
+            "name_stat": "character_name",
+            "size": "massive",
+            "interactable": true
+          },
+          {
+            "id": "char_name_text",
+            "type": "text",
+            "text": { "type": "stat", "stat": "character_name" },
+            "edit_stat": "character_name",
+            "style": "title"
+          },
+          {
+            "id": "char_subtitle",
+            "type": "text",
+            "text": {
+              "type": "concat",
+              "components": {
+                "type": "list",
+                "components": [
+                  { "type": "enumeratedName", "enumerated_type": "da_background", "id": { "type": "stat", "stat": "background" } },
+                  { "type": "constant", "value_type": "string", "value": " \u00b7 Level " },
+                  { "type": "stat", "stat": "level" },
+                  { "type": "constant", "value_type": "string", "value": " " },
+                  { "type": "enumeratedName", "enumerated_type": "da_class", "id": { "type": "stat", "stat": "character_class" } }
+                ]
+              }
+            },
+            "style": "subhead"
+          }
+        ],
+        "bottom_left_stack": [
+          { "id": "hp_overview",  "type": "stat", "stat": "current_health", "style": "block" },
+          { "id": "def_overview", "type": "stat", "stat": "defense",        "style": "block" }
+        ],
+        "bottom_right_stack": [
+          { "id": "spd_overview",  "type": "stat", "stat": "speed",        "style": "block" },
+          { "id": "ar_overview",   "type": "stat", "stat": "armor_rating", "style": "block" }
+        ]
+      },
+      {
+        "id": "xp_level_section",
+        "type": "section",
+        "header": [],
+        "content": [
+          { "id": "level_stat_view", "type": "stat", "stat": "level",      "style": "list" },
+          { "id": "xp_stat_view",    "type": "stat", "stat": "experience", "style": "list" }
+        ],
+        "show_divider": true
+      },
+      {
+        "id": "abilities_summary",
+        "type": "section",
+        "header": [
+          { "id": "abilities_header", "type": "text", "text": { "type": "constant", "value_type": "string", "value": "Abilities" }, "style": "section" }
+        ],
+        "content": [
+          { "id": "com_overview", "type": "stat", "stat": "communication", "style": "block", "always_show_sign": true },
+          { "id": "con_overview", "type": "stat", "stat": "constitution",  "style": "block", "always_show_sign": true },
+          { "id": "cun_overview", "type": "stat", "stat": "cunning",       "style": "block", "always_show_sign": true },
+          { "id": "dex_overview", "type": "stat", "stat": "dexterity",     "style": "block", "always_show_sign": true },
+          { "id": "mag_overview", "type": "stat", "stat": "magic",         "style": "block", "always_show_sign": true },
+          { "id": "per_overview", "type": "stat", "stat": "perception",    "style": "block", "always_show_sign": true },
+          { "id": "str_overview", "type": "stat", "stat": "strength",      "style": "block", "always_show_sign": true },
+          { "id": "wil_overview", "type": "stat", "stat": "willpower",     "style": "block", "always_show_sign": true }
+        ],
+        "content_item_min_width": 72,
+        "show_divider": false
+      }
+    ]
+  }
+}

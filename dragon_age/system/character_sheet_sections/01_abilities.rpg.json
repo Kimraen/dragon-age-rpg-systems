@@ -1,0 +1,170 @@
+{
+  "type": "CharacterSheetSection",
+  "id": "abilities",
+  "view": {
+    "id": "abilities_sheet_root",
+    "type": "list",
+    "subviews": [
+      {
+        "id": "core_abilities_section",
+        "type": "section",
+        "header": [
+          { "id": "core_abilities_header", "type": "text", "text": { "type": "constant", "value_type": "string", "value": "Core Abilities" }, "style": "headline" }
+        ],
+        "content": [
+          { "id": "com_block", "type": "stat", "stat": "communication", "style": "block", "always_show_sign": true, "min_value_allowed": -2, "max_value_allowed": 8 },
+          { "id": "con_block", "type": "stat", "stat": "constitution",  "style": "block", "always_show_sign": true, "min_value_allowed": -2, "max_value_allowed": 8 },
+          { "id": "cun_block", "type": "stat", "stat": "cunning",       "style": "block", "always_show_sign": true, "min_value_allowed": -2, "max_value_allowed": 8 },
+          { "id": "dex_block", "type": "stat", "stat": "dexterity",     "style": "block", "always_show_sign": true, "min_value_allowed": -2, "max_value_allowed": 8 },
+          { "id": "mag_block", "type": "stat", "stat": "magic",         "style": "block", "always_show_sign": true, "min_value_allowed": -2, "max_value_allowed": 8 },
+          { "id": "per_block", "type": "stat", "stat": "perception",    "style": "block", "always_show_sign": true, "min_value_allowed": -2, "max_value_allowed": 8 },
+          { "id": "str_block", "type": "stat", "stat": "strength",      "style": "block", "always_show_sign": true, "min_value_allowed": -2, "max_value_allowed": 8 },
+          { "id": "wil_block", "type": "stat", "stat": "willpower",     "style": "block", "always_show_sign": true, "min_value_allowed": -2, "max_value_allowed": 8 }
+        ],
+        "content_item_min_width": 72,
+        "show_divider": false
+      },
+      {
+        "id": "focuses_note",
+        "type": "text",
+        "text": { "type": "constant", "value_type": "string", "value": "A focus grants +2 to the ability for tests within that specialty." },
+        "style": "caption"
+      },
+      {
+        "id": "com_focuses_collapsible",
+        "type": "collapsible",
+        "title": { "type": "constant", "value_type": "string", "value": "Communication Focuses" },
+        "subtitle": { "type": "constant", "value_type": "string", "value": "Bargaining, Deception, Etiquette, Leadership, Persuasion..." },
+        "start_expanded": false,
+        "subviews": [
+          { "id": "f_com_animal_handling", "type": "checkbox", "stat": "focus_com_animal_handling", "label": { "type": "constant", "value_type": "string", "value": "Animal Handling" }, "should_auto_save": true },
+          { "id": "f_com_bargaining",      "type": "checkbox", "stat": "focus_com_bargaining",      "label": { "type": "constant", "value_type": "string", "value": "Bargaining" },      "should_auto_save": true },
+          { "id": "f_com_deception",       "type": "checkbox", "stat": "focus_com_deception",       "label": { "type": "constant", "value_type": "string", "value": "Deception" },       "should_auto_save": true },
+          { "id": "f_com_disguise",        "type": "checkbox", "stat": "focus_com_disguise",        "label": { "type": "constant", "value_type": "string", "value": "Disguise" },        "should_auto_save": true },
+          { "id": "f_com_etiquette",       "type": "checkbox", "stat": "focus_com_etiquette",       "label": { "type": "constant", "value_type": "string", "value": "Etiquette" },       "should_auto_save": true },
+          { "id": "f_com_gambling",        "type": "checkbox", "stat": "focus_com_gambling",        "label": { "type": "constant", "value_type": "string", "value": "Gambling" },        "should_auto_save": true },
+          { "id": "f_com_investigation",   "type": "checkbox", "stat": "focus_com_investigation",   "label": { "type": "constant", "value_type": "string", "value": "Investigation" },   "should_auto_save": true },
+          { "id": "f_com_leadership",      "type": "checkbox", "stat": "focus_com_leadership",      "label": { "type": "constant", "value_type": "string", "value": "Leadership" },      "should_auto_save": true },
+          { "id": "f_com_performance",     "type": "checkbox", "stat": "focus_com_performance",     "label": { "type": "constant", "value_type": "string", "value": "Performance" },     "should_auto_save": true },
+          { "id": "f_com_persuasion",      "type": "checkbox", "stat": "focus_com_persuasion",      "label": { "type": "constant", "value_type": "string", "value": "Persuasion" },      "should_auto_save": true },
+          { "id": "f_com_seduction",       "type": "checkbox", "stat": "focus_com_seduction",       "label": { "type": "constant", "value_type": "string", "value": "Seduction" },       "should_auto_save": true }
+        ]
+      },
+      {
+        "id": "con_focuses_collapsible",
+        "type": "collapsible",
+        "title": { "type": "constant", "value_type": "string", "value": "Constitution Focuses" },
+        "subtitle": { "type": "constant", "value_type": "string", "value": "Drinking, Running, Stamina, Swimming" },
+        "start_expanded": false,
+        "subviews": [
+          { "id": "f_con_drinking",  "type": "checkbox", "stat": "focus_con_drinking",  "label": { "type": "constant", "value_type": "string", "value": "Drinking" },  "should_auto_save": true },
+          { "id": "f_con_running",   "type": "checkbox", "stat": "focus_con_running",   "label": { "type": "constant", "value_type": "string", "value": "Running" },   "should_auto_save": true },
+          { "id": "f_con_stamina",   "type": "checkbox", "stat": "focus_con_stamina",   "label": { "type": "constant", "value_type": "string", "value": "Stamina" },   "should_auto_save": true },
+          { "id": "f_con_swimming",  "type": "checkbox", "stat": "focus_con_swimming",  "label": { "type": "constant", "value_type": "string", "value": "Swimming" },  "should_auto_save": true }
+        ]
+      },
+      {
+        "id": "cun_focuses_collapsible",
+        "type": "collapsible",
+        "title": { "type": "constant", "value_type": "string", "value": "Cunning Focuses" },
+        "subtitle": { "type": "constant", "value_type": "string", "value": "Arcane Lore, Healing, Historical Lore, Natural Lore..." },
+        "start_expanded": false,
+        "subviews": [
+          { "id": "f_cun_arcane_lore",     "type": "checkbox", "stat": "focus_cun_arcane_lore",     "label": { "type": "constant", "value_type": "string", "value": "Arcane Lore" },     "should_auto_save": true },
+          { "id": "f_cun_brewing",         "type": "checkbox", "stat": "focus_cun_brewing",         "label": { "type": "constant", "value_type": "string", "value": "Brewing" },         "should_auto_save": true },
+          { "id": "f_cun_calligraphy",     "type": "checkbox", "stat": "focus_cun_calligraphy",     "label": { "type": "constant", "value_type": "string", "value": "Calligraphy" },     "should_auto_save": true },
+          { "id": "f_cun_cultural_lore",   "type": "checkbox", "stat": "focus_cun_cultural_lore",   "label": { "type": "constant", "value_type": "string", "value": "Cultural Lore" },   "should_auto_save": true },
+          { "id": "f_cun_engineering",     "type": "checkbox", "stat": "focus_cun_engineering",     "label": { "type": "constant", "value_type": "string", "value": "Engineering" },     "should_auto_save": true },
+          { "id": "f_cun_evaluation",      "type": "checkbox", "stat": "focus_cun_evaluation",      "label": { "type": "constant", "value_type": "string", "value": "Evaluation" },      "should_auto_save": true },
+          { "id": "f_cun_healing",         "type": "checkbox", "stat": "focus_cun_healing",         "label": { "type": "constant", "value_type": "string", "value": "Healing" },         "should_auto_save": true },
+          { "id": "f_cun_heraldry",        "type": "checkbox", "stat": "focus_cun_heraldry",        "label": { "type": "constant", "value_type": "string", "value": "Heraldry" },        "should_auto_save": true },
+          { "id": "f_cun_historical_lore", "type": "checkbox", "stat": "focus_cun_historical_lore", "label": { "type": "constant", "value_type": "string", "value": "Historical Lore" }, "should_auto_save": true },
+          { "id": "f_cun_military_lore",   "type": "checkbox", "stat": "focus_cun_military_lore",   "label": { "type": "constant", "value_type": "string", "value": "Military Lore" },   "should_auto_save": true },
+          { "id": "f_cun_natural_lore",    "type": "checkbox", "stat": "focus_cun_natural_lore",    "label": { "type": "constant", "value_type": "string", "value": "Natural Lore" },    "should_auto_save": true },
+          { "id": "f_cun_navigation",      "type": "checkbox", "stat": "focus_cun_navigation",      "label": { "type": "constant", "value_type": "string", "value": "Navigation" },      "should_auto_save": true },
+          { "id": "f_cun_qun",             "type": "checkbox", "stat": "focus_cun_qun",             "label": { "type": "constant", "value_type": "string", "value": "Qun" },             "should_auto_save": true },
+          { "id": "f_cun_religious_lore",  "type": "checkbox", "stat": "focus_cun_religious_lore",  "label": { "type": "constant", "value_type": "string", "value": "Religious Lore" },  "should_auto_save": true },
+          { "id": "f_cun_research",        "type": "checkbox", "stat": "focus_cun_research",        "label": { "type": "constant", "value_type": "string", "value": "Research" },        "should_auto_save": true }
+        ]
+      },
+      {
+        "id": "dex_focuses_collapsible",
+        "type": "collapsible",
+        "title": { "type": "constant", "value_type": "string", "value": "Dexterity Focuses" },
+        "subtitle": { "type": "constant", "value_type": "string", "value": "Bows, Brawling, Initiative, Light Blades, Stealth..." },
+        "start_expanded": false,
+        "subviews": [
+          { "id": "f_dex_acrobatics",   "type": "checkbox", "stat": "focus_dex_acrobatics",   "label": { "type": "constant", "value_type": "string", "value": "Acrobatics" },   "should_auto_save": true },
+          { "id": "f_dex_bows",         "type": "checkbox", "stat": "focus_dex_bows",         "label": { "type": "constant", "value_type": "string", "value": "Bows" },         "should_auto_save": true },
+          { "id": "f_dex_brawling",     "type": "checkbox", "stat": "focus_dex_brawling",     "label": { "type": "constant", "value_type": "string", "value": "Brawling" },     "should_auto_save": true },
+          { "id": "f_dex_crafting",     "type": "checkbox", "stat": "focus_dex_crafting",     "label": { "type": "constant", "value_type": "string", "value": "Crafting" },     "should_auto_save": true },
+          { "id": "f_dex_driving",      "type": "checkbox", "stat": "focus_dex_driving",      "label": { "type": "constant", "value_type": "string", "value": "Driving" },      "should_auto_save": true },
+          { "id": "f_dex_initiative",   "type": "checkbox", "stat": "focus_dex_initiative",   "label": { "type": "constant", "value_type": "string", "value": "Initiative" },   "should_auto_save": true },
+          { "id": "f_dex_legerdemain",  "type": "checkbox", "stat": "focus_dex_legerdemain",  "label": { "type": "constant", "value_type": "string", "value": "Legerdemain" },  "should_auto_save": true },
+          { "id": "f_dex_light_blades", "type": "checkbox", "stat": "focus_dex_light_blades", "label": { "type": "constant", "value_type": "string", "value": "Light Blades" }, "should_auto_save": true },
+          { "id": "f_dex_riding",       "type": "checkbox", "stat": "focus_dex_riding",       "label": { "type": "constant", "value_type": "string", "value": "Riding" },       "should_auto_save": true },
+          { "id": "f_dex_stealth",      "type": "checkbox", "stat": "focus_dex_stealth",      "label": { "type": "constant", "value_type": "string", "value": "Stealth" },      "should_auto_save": true },
+          { "id": "f_dex_traps",        "type": "checkbox", "stat": "focus_dex_traps",        "label": { "type": "constant", "value_type": "string", "value": "Traps" },        "should_auto_save": true }
+        ]
+      },
+      {
+        "id": "mag_focuses_collapsible",
+        "type": "collapsible",
+        "title": { "type": "constant", "value_type": "string", "value": "Magic Focuses" },
+        "subtitle": { "type": "constant", "value_type": "string", "value": "Arcane Lance, Blood Magic" },
+        "start_expanded": false,
+        "subviews": [
+          { "id": "f_mag_arcane_lance", "type": "checkbox", "stat": "focus_mag_arcane_lance", "label": { "type": "constant", "value_type": "string", "value": "Arcane Lance" }, "should_auto_save": true },
+          { "id": "f_mag_blood_magic",  "type": "checkbox", "stat": "focus_mag_blood_magic",  "label": { "type": "constant", "value_type": "string", "value": "Blood Magic" },  "should_auto_save": true }
+        ]
+      },
+      {
+        "id": "per_focuses_collapsible",
+        "type": "collapsible",
+        "title": { "type": "constant", "value_type": "string", "value": "Perception Focuses" },
+        "subtitle": { "type": "constant", "value_type": "string", "value": "Empathy, Hearing, Searching, Seeing, Tracking" },
+        "start_expanded": false,
+        "subviews": [
+          { "id": "f_per_empathy",   "type": "checkbox", "stat": "focus_per_empathy",   "label": { "type": "constant", "value_type": "string", "value": "Empathy" },   "should_auto_save": true },
+          { "id": "f_per_hearing",   "type": "checkbox", "stat": "focus_per_hearing",   "label": { "type": "constant", "value_type": "string", "value": "Hearing" },   "should_auto_save": true },
+          { "id": "f_per_searching", "type": "checkbox", "stat": "focus_per_searching", "label": { "type": "constant", "value_type": "string", "value": "Searching" }, "should_auto_save": true },
+          { "id": "f_per_seeing",    "type": "checkbox", "stat": "focus_per_seeing",    "label": { "type": "constant", "value_type": "string", "value": "Seeing" },    "should_auto_save": true },
+          { "id": "f_per_tracking",  "type": "checkbox", "stat": "focus_per_tracking",  "label": { "type": "constant", "value_type": "string", "value": "Tracking" },  "should_auto_save": true }
+        ]
+      },
+      {
+        "id": "str_focuses_collapsible",
+        "type": "collapsible",
+        "title": { "type": "constant", "value_type": "string", "value": "Strength Focuses" },
+        "subtitle": { "type": "constant", "value_type": "string", "value": "Axes, Bludgeons, Heavy Blades, Intimidation, Might..." },
+        "start_expanded": false,
+        "subviews": [
+          { "id": "f_str_axes",         "type": "checkbox", "stat": "focus_str_axes",         "label": { "type": "constant", "value_type": "string", "value": "Axes" },         "should_auto_save": true },
+          { "id": "f_str_bludgeons",    "type": "checkbox", "stat": "focus_str_bludgeons",    "label": { "type": "constant", "value_type": "string", "value": "Bludgeons" },    "should_auto_save": true },
+          { "id": "f_str_climbing",     "type": "checkbox", "stat": "focus_str_climbing",     "label": { "type": "constant", "value_type": "string", "value": "Climbing" },     "should_auto_save": true },
+          { "id": "f_str_driving",      "type": "checkbox", "stat": "focus_str_driving",      "label": { "type": "constant", "value_type": "string", "value": "Driving" },      "should_auto_save": true },
+          { "id": "f_str_heavy_blades", "type": "checkbox", "stat": "focus_str_heavy_blades", "label": { "type": "constant", "value_type": "string", "value": "Heavy Blades" }, "should_auto_save": true },
+          { "id": "f_str_intimidation", "type": "checkbox", "stat": "focus_str_intimidation", "label": { "type": "constant", "value_type": "string", "value": "Intimidation" }, "should_auto_save": true },
+          { "id": "f_str_jumping",      "type": "checkbox", "stat": "focus_str_jumping",      "label": { "type": "constant", "value_type": "string", "value": "Jumping" },      "should_auto_save": true },
+          { "id": "f_str_lances",       "type": "checkbox", "stat": "focus_str_lances",       "label": { "type": "constant", "value_type": "string", "value": "Lances" },       "should_auto_save": true },
+          { "id": "f_str_might",        "type": "checkbox", "stat": "focus_str_might",        "label": { "type": "constant", "value_type": "string", "value": "Might" },        "should_auto_save": true },
+          { "id": "f_str_polearms",     "type": "checkbox", "stat": "focus_str_polearms",     "label": { "type": "constant", "value_type": "string", "value": "Polearms" },     "should_auto_save": true },
+          { "id": "f_str_smithing",     "type": "checkbox", "stat": "focus_str_smithing",     "label": { "type": "constant", "value_type": "string", "value": "Smithing" },     "should_auto_save": true }
+        ]
+      },
+      {
+        "id": "wil_focuses_collapsible",
+        "type": "collapsible",
+        "title": { "type": "constant", "value_type": "string", "value": "Willpower Focuses" },
+        "subtitle": { "type": "constant", "value_type": "string", "value": "Courage, Faith, Morale, Self-Discipline" },
+        "start_expanded": false,
+        "subviews": [
+          { "id": "f_wil_courage",         "type": "checkbox", "stat": "focus_wil_courage",         "label": { "type": "constant", "value_type": "string", "value": "Courage" },         "should_auto_save": true },
+          { "id": "f_wil_faith",           "type": "checkbox", "stat": "focus_wil_faith",           "label": { "type": "constant", "value_type": "string", "value": "Faith" },           "should_auto_save": true },
+          { "id": "f_wil_morale",          "type": "checkbox", "stat": "focus_wil_morale",          "label": { "type": "constant", "value_type": "string", "value": "Morale" },          "should_auto_save": true },
+          { "id": "f_wil_self_discipline", "type": "checkbox", "stat": "focus_wil_self_discipline", "label": { "type": "constant", "value_type": "string", "value": "Self-Discipline" }, "should_auto_save": true }
+        ]
+      }
+    ]
+  }
+}

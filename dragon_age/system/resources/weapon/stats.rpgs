@@ -1,0 +1,8 @@
+base string weapon_name(name = "Name") = "";
+base string weapon_group(name = "Weapon Group") = "brawling";
+base string damage_dice(name = "Damage Dice") = "1d6";
+base integer damage_bonus(name = "Damage Bonus") = 0;
+base integer weapon_min_str(name = "Min Strength", abbreviation = "Min STR") = 0;
+base string weapon_cost(name = "Cost") = "1 SP";
+base decimal weapon_weight(name = "Weight (kg)") = 1.0;
+base string weapon_notes(name = "Notes") = "";
