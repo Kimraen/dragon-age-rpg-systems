@@ -1,0 +1,4555 @@
+{
+  "type": "RPGSystem",
+  "id": "dragon_age",
+  "name": "Dragon Age RPG",
+  "abbreviation": "DA",
+  "version": "1.0.0",
+  "min_app_version": "1.0.0",
+  "character_display_name": "Character",
+  "character_stats": [],
+  "character_indexed_stats": [
+    "character_name",
+    "level",
+    "character_class",
+    "background"
+  ],
+  "character_sheet_sections": [
+    {
+      "type": "CharacterSheetSection",
+      "id": "overview",
+      "view": {
+        "id": "overview_root",
+        "type": "list",
+        "subviews": [
+          {
+            "id": "avatar_section",
+            "type": "avatarSection",
+            "center_content": [
+              {
+                "id": "char_avatar",
+                "type": "avatar",
+                "photo_stat": "photo",
+                "name_stat": "character_name",
+                "size": "massive",
+                "interactable": true
+              },
+              {
+                "id": "char_name_text",
+                "type": "text",
+                "text": {
+                  "type": "stat",
+                  "stat": "character_name"
+                },
+                "edit_stat": "character_name",
+                "style": "title"
+              },
+              {
+                "id": "char_subtitle",
+                "type": "text",
+                "text": {
+                  "type": "concat",
+                  "components": {
+                    "type": "list",
+                    "components": [
+                      {
+                        "type": "enumeratedName",
+                        "enumerated_type": "da_background",
+                        "id": {
+                          "type": "stat",
+                          "stat": "background"
+                        }
+                      },
+                      {
+                        "type": "constant",
+                        "value_type": "string",
+                        "value": " · Level "
+                      },
+                      {
+                        "type": "stat",
+                        "stat": "level"
+                      },
+                      {
+                        "type": "constant",
+                        "value_type": "string",
+                        "value": " "
+                      },
+                      {
+                        "type": "enumeratedName",
+                        "enumerated_type": "da_class",
+                        "id": {
+                          "type": "stat",
+                          "stat": "character_class"
+                        }
+                      }
+                    ]
+                  }
+                },
+                "style": "subhead"
+              }
+            ],
+            "bottom_left_stack": [
+              {
+                "id": "hp_overview",
+                "type": "stat",
+                "stat": "current_health",
+                "style": "block"
+              },
+              {
+                "id": "def_overview",
+                "type": "stat",
+                "stat": "defense",
+                "style": "block"
+              }
+            ],
+            "bottom_right_stack": [
+              {
+                "id": "spd_overview",
+                "type": "stat",
+                "stat": "speed",
+                "style": "block"
+              },
+              {
+                "id": "ar_overview",
+                "type": "stat",
+                "stat": "armor_rating",
+                "style": "block"
+              }
+            ]
+          },
+          {
+            "id": "xp_level_section",
+            "type": "section",
+            "header": [],
+            "content": [
+              {
+                "id": "level_stat_view",
+                "type": "stat",
+                "stat": "level",
+                "style": "list"
+              },
+              {
+                "id": "xp_stat_view",
+                "type": "stat",
+                "stat": "experience",
+                "style": "list"
+              }
+            ],
+            "show_divider": true
+          },
+          {
+            "id": "abilities_summary",
+            "type": "section",
+            "header": [
+              {
+                "id": "abilities_header",
+                "type": "text",
+                "text": {
+                  "type": "constant",
+                  "value_type": "string",
+                  "value": "Abilities"
+                },
+                "style": "section"
+              }
+            ],
+            "content": [
+              {
+                "id": "com_overview",
+                "type": "stat",
+                "stat": "communication",
+                "style": "block",
+                "always_show_sign": true
+              },
+              {
+                "id": "con_overview",
+                "type": "stat",
+                "stat": "constitution",
+                "style": "block",
+                "always_show_sign": true
+              },
+              {
+                "id": "cun_overview",
+                "type": "stat",
+                "stat": "cunning",
+                "style": "block",
+                "always_show_sign": true
+              },
+              {
+                "id": "dex_overview",
+                "type": "stat",
+                "stat": "dexterity",
+                "style": "block",
+                "always_show_sign": true
+              },
+              {
+                "id": "mag_overview",
+                "type": "stat",
+                "stat": "magic",
+                "style": "block",
+                "always_show_sign": true
+              },
+              {
+                "id": "per_overview",
+                "type": "stat",
+                "stat": "perception",
+                "style": "block",
+                "always_show_sign": true
+              },
+              {
+                "id": "str_overview",
+                "type": "stat",
+                "stat": "strength",
+                "style": "block",
+                "always_show_sign": true
+              },
+              {
+                "id": "wil_overview",
+                "type": "stat",
+                "stat": "willpower",
+                "style": "block",
+                "always_show_sign": true
+              }
+            ],
+            "content_item_min_width": 72,
+            "show_divider": false
+          }
+        ]
+      }
+    },
+    {
+      "type": "CharacterSheetSection",
+      "id": "abilities",
+      "view": {
+        "id": "abilities_sheet_root",
+        "type": "list",
+        "subviews": [
+          {
+            "id": "core_abilities_section",
+            "type": "section",
+            "header": [
+              {
+                "id": "core_abilities_header",
+                "type": "text",
+                "text": {
+                  "type": "constant",
+                  "value_type": "string",
+                  "value": "Core Abilities"
+                },
+                "style": "headline"
+              }
+            ],
+            "content": [
+              {
+                "id": "com_block",
+                "type": "stat",
+                "stat": "communication",
+                "style": "block",
+                "always_show_sign": true,
+                "min_value_allowed": -2,
+                "max_value_allowed": 8
+              },
+              {
+                "id": "con_block",
+                "type": "stat",
+                "stat": "constitution",
+                "style": "block",
+                "always_show_sign": true,
+                "min_value_allowed": -2,
+                "max_value_allowed": 8
+              },
+              {
+                "id": "cun_block",
+                "type": "stat",
+                "stat": "cunning",
+                "style": "block",
+                "always_show_sign": true,
+                "min_value_allowed": -2,
+                "max_value_allowed": 8
+              },
+              {
+                "id": "dex_block",
+                "type": "stat",
+                "stat": "dexterity",
+                "style": "block",
+                "always_show_sign": true,
+                "min_value_allowed": -2,
+                "max_value_allowed": 8
+              },
+              {
+                "id": "mag_block",
+                "type": "stat",
+                "stat": "magic",
+                "style": "block",
+                "always_show_sign": true,
+                "min_value_allowed": -2,
+                "max_value_allowed": 8
+              },
+              {
+                "id": "per_block",
+                "type": "stat",
+                "stat": "perception",
+                "style": "block",
+                "always_show_sign": true,
+                "min_value_allowed": -2,
+                "max_value_allowed": 8
+              },
+              {
+                "id": "str_block",
+                "type": "stat",
+                "stat": "strength",
+                "style": "block",
+                "always_show_sign": true,
+                "min_value_allowed": -2,
+                "max_value_allowed": 8
+              },
+              {
+                "id": "wil_block",
+                "type": "stat",
+                "stat": "willpower",
+                "style": "block",
+                "always_show_sign": true,
+                "min_value_allowed": -2,
+                "max_value_allowed": 8
+              }
+            ],
+            "content_item_min_width": 72,
+            "show_divider": false
+          },
+          {
+            "id": "focuses_note",
+            "type": "text",
+            "text": {
+              "type": "constant",
+              "value_type": "string",
+              "value": "A focus grants +2 to the ability for tests within that specialty."
+            },
+            "style": "caption"
+          },
+          {
+            "id": "com_focuses_collapsible",
+            "type": "collapsible",
+            "title": {
+              "type": "constant",
+              "value_type": "string",
+              "value": "Communication Focuses"
+            },
+            "subtitle": {
+              "type": "constant",
+              "value_type": "string",
+              "value": "Bargaining, Deception, Etiquette, Leadership, Persuasion..."
+            },
+            "start_expanded": false,
+            "subviews": [
+              {
+                "id": "f_com_animal_handling",
+                "type": "checkbox",
+                "stat": "focus_com_animal_handling",
+                "label": {
+                  "type": "constant",
+                  "value_type": "string",
+                  "value": "Animal Handling"
+                },
+                "should_auto_save": true
+              },
+              {
+                "id": "f_com_bargaining",
+                "type": "checkbox",
+                "stat": "focus_com_bargaining",
+                "label": {
+                  "type": "constant",
+                  "value_type": "string",
+                  "value": "Bargaining"
+                },
+                "should_auto_save": true
+              },
+              {
+                "id": "f_com_deception",
+                "type": "checkbox",
+                "stat": "focus_com_deception",
+                "label": {
+                  "type": "constant",
+                  "value_type": "string",
+                  "value": "Deception"
+                },
+                "should_auto_save": true
+              },
+              {
+                "id": "f_com_disguise",
+                "type": "checkbox",
+                "stat": "focus_com_disguise",
+                "label": {
+                  "type": "constant",
+                  "value_type": "string",
+                  "value": "Disguise"
+                },
+                "should_auto_save": true
+              },
+              {
+                "id": "f_com_etiquette",
+                "type": "checkbox",
+                "stat": "focus_com_etiquette",
+                "label": {
+                  "type": "constant",
+                  "value_type": "string",
+                  "value": "Etiquette"
+                },
+                "should_auto_save": true
+              },
+              {
+                "id": "f_com_gambling",
+                "type": "checkbox",
+                "stat": "focus_com_gambling",
+                "label": {
+                  "type": "constant",
+                  "value_type": "string",
+                  "value": "Gambling"
+                },
+                "should_auto_save": true
+              },
+              {
+                "id": "f_com_investigation",
+                "type": "checkbox",
+                "stat": "focus_com_investigation",
+                "label": {
+                  "type": "constant",
+                  "value_type": "string",
+                  "value": "Investigation"
+                },
+                "should_auto_save": true
+              },
+              {
+                "id": "f_com_leadership",
+                "type": "checkbox",
+                "stat": "focus_com_leadership",
+                "label": {
+                  "type": "constant",
+                  "value_type": "string",
+                  "value": "Leadership"
+                },
+                "should_auto_save": true
+              },
+              {
+                "id": "f_com_performance",
+                "type": "checkbox",
+                "stat": "focus_com_performance",
+                "label": {
+                  "type": "constant",
+                  "value_type": "string",
+                  "value": "Performance"
+                },
+                "should_auto_save": true
+              },
+              {
+                "id": "f_com_persuasion",
+                "type": "checkbox",
+                "stat": "focus_com_persuasion",
+                "label": {
+                  "type": "constant",
+                  "value_type": "string",
+                  "value": "Persuasion"
+                },
+                "should_auto_save": true
+              },
+              {
+                "id": "f_com_seduction",
+                "type": "checkbox",
+                "stat": "focus_com_seduction",
+                "label": {
+                  "type": "constant",
+                  "value_type": "string",
+                  "value": "Seduction"
+                },
+                "should_auto_save": true
+              }
+            ]
+          },
+          {
+            "id": "con_focuses_collapsible",
+            "type": "collapsible",
+            "title": {
+              "type": "constant",
+              "value_type": "string",
+              "value": "Constitution Focuses"
+            },
+            "subtitle": {
+              "type": "constant",
+              "value_type": "string",
+              "value": "Drinking, Running, Stamina, Swimming"
+            },
+            "start_expanded": false,
+            "subviews": [
+              {
+                "id": "f_con_drinking",
+                "type": "checkbox",
+                "stat": "focus_con_drinking",
+                "label": {
+                  "type": "constant",
+                  "value_type": "string",
+                  "value": "Drinking"
+                },
+                "should_auto_save": true
+              },
+              {
+                "id": "f_con_running",
+                "type": "checkbox",
+                "stat": "focus_con_running",
+                "label": {
+                  "type": "constant",
+                  "value_type": "string",
+                  "value": "Running"
+                },
+                "should_auto_save": true
+              },
+              {
+                "id": "f_con_stamina",
+                "type": "checkbox",
+                "stat": "focus_con_stamina",
+                "label": {
+                  "type": "constant",
+                  "value_type": "string",
+                  "value": "Stamina"
+                },
+                "should_auto_save": true
+              },
+              {
+                "id": "f_con_swimming",
+                "type": "checkbox",
+                "stat": "focus_con_swimming",
+                "label": {
+                  "type": "constant",
+                  "value_type": "string",
+                  "value": "Swimming"
+                },
+                "should_auto_save": true
+              }
+            ]
+          },
+          {
+            "id": "cun_focuses_collapsible",
+            "type": "collapsible",
+            "title": {
+              "type": "constant",
+              "value_type": "string",
+              "value": "Cunning Focuses"
+            },
+            "subtitle": {
+              "type": "constant",
+              "value_type": "string",
+              "value": "Arcane Lore, Healing, Historical Lore, Natural Lore..."
+            },
+            "start_expanded": false,
+            "subviews": [
+              {
+                "id": "f_cun_arcane_lore",
+                "type": "checkbox",
+                "stat": "focus_cun_arcane_lore",
+                "label": {
+                  "type": "constant",
+                  "value_type": "string",
+                  "value": "Arcane Lore"
+                },
+                "should_auto_save": true
+              },
+              {
+                "id": "f_cun_brewing",
+                "type": "checkbox",
+                "stat": "focus_cun_brewing",
+                "label": {
+                  "type": "constant",
+                  "value_type": "string",
+                  "value": "Brewing"
+                },
+                "should_auto_save": true
+              },
+              {
+                "id": "f_cun_calligraphy",
+                "type": "checkbox",
+                "stat": "focus_cun_calligraphy",
+                "label": {
+                  "type": "constant",
+                  "value_type": "string",
+                  "value": "Calligraphy"
+                },
+                "should_auto_save": true
+              },
+              {
+                "id": "f_cun_cultural_lore",
+                "type": "checkbox",
+                "stat": "focus_cun_cultural_lore",
+                "label": {
+                  "type": "constant",
+                  "value_type": "string",
+                  "value": "Cultural Lore"
+                },
+                "should_auto_save": true
+              },
+              {
+                "id": "f_cun_engineering",
+                "type": "checkbox",
+                "stat": "focus_cun_engineering",
+                "label": {
+                  "type": "constant",
+                  "value_type": "string",
+                  "value": "Engineering"
+                },
+                "should_auto_save": true
+              },
+              {
+                "id": "f_cun_evaluation",
+                "type": "checkbox",
+                "stat": "focus_cun_evaluation",
+                "label": {
+                  "type": "constant",
+                  "value_type": "string",
+                  "value": "Evaluation"
+                },
+                "should_auto_save": true
+              },
+              {
+                "id": "f_cun_healing",
+                "type": "checkbox",
+                "stat": "focus_cun_healing",
+                "label": {
+                  "type": "constant",
+                  "value_type": "string",
+                  "value": "Healing"
+                },
+                "should_auto_save": true
+              },
+              {
+                "id": "f_cun_heraldry",
+                "type": "checkbox",
+                "stat": "focus_cun_heraldry",
+                "label": {
+                  "type": "constant",
+                  "value_type": "string",
+                  "value": "Heraldry"
+                },
+                "should_auto_save": true
+              },
+              {
+                "id": "f_cun_historical_lore",
+                "type": "checkbox",
+                "stat": "focus_cun_historical_lore",
+                "label": {
+                  "type": "constant",
+                  "value_type": "string",
+                  "value": "Historical Lore"
+                },
+                "should_auto_save": true
+              },
+              {
+                "id": "f_cun_military_lore",
+                "type": "checkbox",
+                "stat": "focus_cun_military_lore",
+                "label": {
+                  "type": "constant",
+                  "value_type": "string",
+                  "value": "Military Lore"
+                },
+                "should_auto_save": true
+              },
+              {
+                "id": "f_cun_natural_lore",
+                "type": "checkbox",
+                "stat": "focus_cun_natural_lore",
+                "label": {
+                  "type": "constant",
+                  "value_type": "string",
+                  "value": "Natural Lore"
+                },
+                "should_auto_save": true
+              },
+              {
+                "id": "f_cun_navigation",
+                "type": "checkbox",
+                "stat": "focus_cun_navigation",
+                "label": {
+                  "type": "constant",
+                  "value_type": "string",
+                  "value": "Navigation"
+                },
+                "should_auto_save": true
+              },
+              {
+                "id": "f_cun_qun",
+                "type": "checkbox",
+                "stat": "focus_cun_qun",
+                "label": {
+                  "type": "constant",
+                  "value_type": "string",
+                  "value": "Qun"
+                },
+                "should_auto_save": true
+              },
+              {
+                "id": "f_cun_religious_lore",
+                "type": "checkbox",
+                "stat": "focus_cun_religious_lore",
+                "label": {
+                  "type": "constant",
+                  "value_type": "string",
+                  "value": "Religious Lore"
+                },
+                "should_auto_save": true
+              },
+              {
+                "id": "f_cun_research",
+                "type": "checkbox",
+                "stat": "focus_cun_research",
+                "label": {
+                  "type": "constant",
+                  "value_type": "string",
+                  "value": "Research"
+                },
+                "should_auto_save": true
+              }
+            ]
+          },
+          {
+            "id": "dex_focuses_collapsible",
+            "type": "collapsible",
+            "title": {
+              "type": "constant",
+              "value_type": "string",
+              "value": "Dexterity Focuses"
+            },
+            "subtitle": {
+              "type": "constant",
+              "value_type": "string",
+              "value": "Bows, Brawling, Initiative, Light Blades, Stealth..."
+            },
+            "start_expanded": false,
+            "subviews": [
+              {
+                "id": "f_dex_acrobatics",
+                "type": "checkbox",
+                "stat": "focus_dex_acrobatics",
+                "label": {
+                  "type": "constant",
+                  "value_type": "string",
+                  "value": "Acrobatics"
+                },
+                "should_auto_save": true
+              },
+              {
+                "id": "f_dex_bows",
+                "type": "checkbox",
+                "stat": "focus_dex_bows",
+                "label": {
+                  "type": "constant",
+                  "value_type": "string",
+                  "value": "Bows"
+                },
+                "should_auto_save": true
+              },
+              {
+                "id": "f_dex_brawling",
+                "type": "checkbox",
+                "stat": "focus_dex_brawling",
+                "label": {
+                  "type": "constant",
+                  "value_type": "string",
+                  "value": "Brawling"
+                },
+                "should_auto_save": true
+              },
+              {
+                "id": "f_dex_crafting",
+                "type": "checkbox",
+                "stat": "focus_dex_crafting",
+                "label": {
+                  "type": "constant",
+                  "value_type": "string",
+                  "value": "Crafting"
+                },
+                "should_auto_save": true
+              },
+              {
+                "id": "f_dex_driving",
+                "type": "checkbox",
+                "stat": "focus_dex_driving",
+                "label": {
+                  "type": "constant",
+                  "value_type": "string",
+                  "value": "Driving"
+                },
+                "should_auto_save": true
+              },
+              {
+                "id": "f_dex_initiative",
+                "type": "checkbox",
+                "stat": "focus_dex_initiative",
+                "label": {
+                  "type": "constant",
+                  "value_type": "string",
+                  "value": "Initiative"
+                },
+                "should_auto_save": true
+              },
+              {
+                "id": "f_dex_legerdemain",
+                "type": "checkbox",
+                "stat": "focus_dex_legerdemain",
+                "label": {
+                  "type": "constant",
+                  "value_type": "string",
+                  "value": "Legerdemain"
+                },
+                "should_auto_save": true
+              },
+              {
+                "id": "f_dex_light_blades",
+                "type": "checkbox",
+                "stat": "focus_dex_light_blades",
+                "label": {
+                  "type": "constant",
+                  "value_type": "string",
+                  "value": "Light Blades"
+                },
+                "should_auto_save": true
+              },
+              {
+                "id": "f_dex_riding",
+                "type": "checkbox",
+                "stat": "focus_dex_riding",
+                "label": {
+                  "type": "constant",
+                  "value_type": "string",
+                  "value": "Riding"
+                },
+                "should_auto_save": true
+              },
+              {
+                "id": "f_dex_stealth",
+                "type": "checkbox",
+                "stat": "focus_dex_stealth",
+                "label": {
+                  "type": "constant",
+                  "value_type": "string",
+                  "value": "Stealth"
+                },
+                "should_auto_save": true
+              },
+              {
+                "id": "f_dex_traps",
+                "type": "checkbox",
+                "stat": "focus_dex_traps",
+                "label": {
+                  "type": "constant",
+                  "value_type": "string",
+                  "value": "Traps"
+                },
+                "should_auto_save": true
+              }
+            ]
+          },
+          {
+            "id": "mag_focuses_collapsible",
+            "type": "collapsible",
+            "title": {
+              "type": "constant",
+              "value_type": "string",
+              "value": "Magic Focuses"
+            },
+            "subtitle": {
+              "type": "constant",
+              "value_type": "string",
+              "value": "Arcane Lance, Blood Magic"
+            },
+            "start_expanded": false,
+            "subviews": [
+              {
+                "id": "f_mag_arcane_lance",
+                "type": "checkbox",
+                "stat": "focus_mag_arcane_lance",
+                "label": {
+                  "type": "constant",
+                  "value_type": "string",
+                  "value": "Arcane Lance"
+                },
+                "should_auto_save": true
+              },
+              {
+                "id": "f_mag_blood_magic",
+                "type": "checkbox",
+                "stat": "focus_mag_blood_magic",
+                "label": {
+                  "type": "constant",
+                  "value_type": "string",
+                  "value": "Blood Magic"
+                },
+                "should_auto_save": true
+              }
+            ]
+          },
+          {
+            "id": "per_focuses_collapsible",
+            "type": "collapsible",
+            "title": {
+              "type": "constant",
+              "value_type": "string",
+              "value": "Perception Focuses"
+            },
+            "subtitle": {
+              "type": "constant",
+              "value_type": "string",
+              "value": "Empathy, Hearing, Searching, Seeing, Tracking"
+            },
+            "start_expanded": false,
+            "subviews": [
+              {
+                "id": "f_per_empathy",
+                "type": "checkbox",
+                "stat": "focus_per_empathy",
+                "label": {
+                  "type": "constant",
+                  "value_type": "string",
+                  "value": "Empathy"
+                },
+                "should_auto_save": true
+              },
+              {
+                "id": "f_per_hearing",
+                "type": "checkbox",
+                "stat": "focus_per_hearing",
+                "label": {
+                  "type": "constant",
+                  "value_type": "string",
+                  "value": "Hearing"
+                },
+                "should_auto_save": true
+              },
+              {
+                "id": "f_per_searching",
+                "type": "checkbox",
+                "stat": "focus_per_searching",
+                "label": {
+                  "type": "constant",
+                  "value_type": "string",
+                  "value": "Searching"
+                },
+                "should_auto_save": true
+              },
+              {
+                "id": "f_per_seeing",
+                "type": "checkbox",
+                "stat": "focus_per_seeing",
+                "label": {
+                  "type": "constant",
+                  "value_type": "string",
+                  "value": "Seeing"
+                },
+                "should_auto_save": true
+              },
+              {
+                "id": "f_per_tracking",
+                "type": "checkbox",
+                "stat": "focus_per_tracking",
+                "label": {
+                  "type": "constant",
+                  "value_type": "string",
+                  "value": "Tracking"
+                },
+                "should_auto_save": true
+              }
+            ]
+          },
+          {
+            "id": "str_focuses_collapsible",
+            "type": "collapsible",
+            "title": {
+              "type": "constant",
+              "value_type": "string",
+              "value": "Strength Focuses"
+            },
+            "subtitle": {
+              "type": "constant",
+              "value_type": "string",
+              "value": "Axes, Bludgeons, Heavy Blades, Intimidation, Might..."
+            },
+            "start_expanded": false,
+            "subviews": [
+              {
+                "id": "f_str_axes",
+                "type": "checkbox",
+                "stat": "focus_str_axes",
+                "label": {
+                  "type": "constant",
+                  "value_type": "string",
+                  "value": "Axes"
+                },
+                "should_auto_save": true
+              },
+              {
+                "id": "f_str_bludgeons",
+                "type": "checkbox",
+                "stat": "focus_str_bludgeons",
+                "label": {
+                  "type": "constant",
+                  "value_type": "string",
+                  "value": "Bludgeons"
+                },
+                "should_auto_save": true
+              },
+              {
+                "id": "f_str_climbing",
+                "type": "checkbox",
+                "stat": "focus_str_climbing",
+                "label": {
+                  "type": "constant",
+                  "value_type": "string",
+                  "value": "Climbing"
+                },
+                "should_auto_save": true
+              },
+              {
+                "id": "f_str_driving",
+                "type": "checkbox",
+                "stat": "focus_str_driving",
+                "label": {
+                  "type": "constant",
+                  "value_type": "string",
+                  "value": "Driving"
+                },
+                "should_auto_save": true
+              },
+              {
+                "id": "f_str_heavy_blades",
+                "type": "checkbox",
+                "stat": "focus_str_heavy_blades",
+                "label": {
+                  "type": "constant",
+                  "value_type": "string",
+                  "value": "Heavy Blades"
+                },
+                "should_auto_save": true
+              },
+              {
+                "id": "f_str_intimidation",
+                "type": "checkbox",
+                "stat": "focus_str_intimidation",
+                "label": {
+                  "type": "constant",
+                  "value_type": "string",
+                  "value": "Intimidation"
+                },
+                "should_auto_save": true
+              },
+              {
+                "id": "f_str_jumping",
+                "type": "checkbox",
+                "stat": "focus_str_jumping",
+                "label": {
+                  "type": "constant",
+                  "value_type": "string",
+                  "value": "Jumping"
+                },
+                "should_auto_save": true
+              },
+              {
+                "id": "f_str_lances",
+                "type": "checkbox",
+                "stat": "focus_str_lances",
+                "label": {
+                  "type": "constant",
+                  "value_type": "string",
+                  "value": "Lances"
+                },
+                "should_auto_save": true
+              },
+              {
+                "id": "f_str_might",
+                "type": "checkbox",
+                "stat": "focus_str_might",
+                "label": {
+                  "type": "constant",
+                  "value_type": "string",
+                  "value": "Might"
+                },
+                "should_auto_save": true
+              },
+              {
+                "id": "f_str_polearms",
+                "type": "checkbox",
+                "stat": "focus_str_polearms",
+                "label": {
+                  "type": "constant",
+                  "value_type": "string",
+                  "value": "Polearms"
+                },
+                "should_auto_save": true
+              },
+              {
+                "id": "f_str_smithing",
+                "type": "checkbox",
+                "stat": "focus_str_smithing",
+                "label": {
+                  "type": "constant",
+                  "value_type": "string",
+                  "value": "Smithing"
+                },
+                "should_auto_save": true
+              }
+            ]
+          },
+          {
+            "id": "wil_focuses_collapsible",
+            "type": "collapsible",
+            "title": {
+              "type": "constant",
+              "value_type": "string",
+              "value": "Willpower Focuses"
+            },
+            "subtitle": {
+              "type": "constant",
+              "value_type": "string",
+              "value": "Courage, Faith, Morale, Self-Discipline"
+            },
+            "start_expanded": false,
+            "subviews": [
+              {
+                "id": "f_wil_courage",
+                "type": "checkbox",
+                "stat": "focus_wil_courage",
+                "label": {
+                  "type": "constant",
+                  "value_type": "string",
+                  "value": "Courage"
+                },
+                "should_auto_save": true
+              },
+              {
+                "id": "f_wil_faith",
+                "type": "checkbox",
+                "stat": "focus_wil_faith",
+                "label": {
+                  "type": "constant",
+                  "value_type": "string",
+                  "value": "Faith"
+                },
+                "should_auto_save": true
+              },
+              {
+                "id": "f_wil_morale",
+                "type": "checkbox",
+                "stat": "focus_wil_morale",
+                "label": {
+                  "type": "constant",
+                  "value_type": "string",
+                  "value": "Morale"
+                },
+                "should_auto_save": true
+              },
+              {
+                "id": "f_wil_self_discipline",
+                "type": "checkbox",
+                "stat": "focus_wil_self_discipline",
+                "label": {
+                  "type": "constant",
+                  "value_type": "string",
+                  "value": "Self-Discipline"
+                },
+                "should_auto_save": true
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "type": "CharacterSheetSection",
+      "id": "combat",
+      "view": {
+        "id": "combat_root",
+        "type": "list",
+        "subviews": [
+          {
+            "id": "health_section",
+            "type": "section",
+            "header": [
+              {
+                "id": "health_header",
+                "type": "text",
+                "text": {
+                  "type": "constant",
+                  "value_type": "string",
+                  "value": "Hit Points"
+                },
+                "style": "section"
+              }
+            ],
+            "content": [
+              {
+                "id": "hp_ticker",
+                "type": "ticker",
+                "stat": "current_health",
+                "label": {
+                  "type": "constant",
+                  "value_type": "string",
+                  "value": "Current HP"
+                },
+                "min_value_allowed": 0,
+                "calculated_max_value_allowed": {
+                  "type": "stat",
+                  "stat": "max_health"
+                },
+                "should_auto_save": true,
+                "button_look": "upDown"
+              },
+              {
+                "id": "max_hp_stat",
+                "type": "stat",
+                "stat": "max_health",
+                "style": "list",
+                "min_value_allowed": 1,
+                "max_value_allowed": 500
+              }
+            ],
+            "show_divider": true
+          },
+          {
+            "id": "mana_section",
+            "type": "section",
+            "is_visible": {
+              "type": "equals",
+              "components": {
+                "type": "list",
+                "components": [
+                  {
+                    "type": "stat",
+                    "stat": "character_class"
+                  },
+                  {
+                    "type": "constant",
+                    "value_type": "string",
+                    "value": "mage"
+                  }
+                ]
+              }
+            },
+            "header": [
+              {
+                "id": "mana_header",
+                "type": "text",
+                "text": {
+                  "type": "constant",
+                  "value_type": "string",
+                  "value": "Mana"
+                },
+                "style": "section"
+              }
+            ],
+            "content": [
+              {
+                "id": "mana_ticker",
+                "type": "ticker",
+                "stat": "current_mana",
+                "label": {
+                  "type": "constant",
+                  "value_type": "string",
+                  "value": "Current Mana"
+                },
+                "min_value_allowed": 0,
+                "calculated_max_value_allowed": {
+                  "type": "stat",
+                  "stat": "max_mana"
+                },
+                "should_auto_save": true,
+                "button_look": "upDown"
+              },
+              {
+                "id": "max_mana_stat",
+                "type": "stat",
+                "stat": "max_mana",
+                "style": "list",
+                "min_value_allowed": 0,
+                "max_value_allowed": 500
+              }
+            ],
+            "show_divider": true
+          },
+          {
+            "id": "defense_section",
+            "type": "section",
+            "header": [
+              {
+                "id": "defense_header",
+                "type": "text",
+                "text": {
+                  "type": "constant",
+                  "value_type": "string",
+                  "value": "Defense & Movement"
+                },
+                "style": "section"
+              }
+            ],
+            "content": [
+              {
+                "id": "defense_stat",
+                "type": "stat",
+                "stat": "defense",
+                "style": "block"
+              },
+              {
+                "id": "speed_stat",
+                "type": "stat",
+                "stat": "speed",
+                "style": "block"
+              }
+            ],
+            "content_item_min_width": 100,
+            "show_divider": true
+          },
+          {
+            "id": "armor_section",
+            "type": "section",
+            "header": [
+              {
+                "id": "armor_header",
+                "type": "text",
+                "text": {
+                  "type": "constant",
+                  "value_type": "string",
+                  "value": "Armor"
+                },
+                "style": "section"
+              }
+            ],
+            "content": [
+              {
+                "id": "ar_stat",
+                "type": "stat",
+                "stat": "armor_rating",
+                "style": "list",
+                "min_value_allowed": 0,
+                "max_value_allowed": 20
+              },
+              {
+                "id": "ap_stat",
+                "type": "stat",
+                "stat": "armor_penalty",
+                "style": "list",
+                "min_value_allowed": 0,
+                "max_value_allowed": 10
+              }
+            ],
+            "show_divider": true
+          },
+          {
+            "id": "magic_resistance_section",
+            "type": "section",
+            "header": [
+              {
+                "id": "mr_header",
+                "type": "text",
+                "text": {
+                  "type": "constant",
+                  "value_type": "string",
+                  "value": "Magic Resistance"
+                },
+                "style": "section"
+              }
+            ],
+            "content": [
+              {
+                "id": "mr_stat",
+                "type": "stat",
+                "stat": "magic_resistance_mod",
+                "style": "list",
+                "always_show_sign": true
+              },
+              {
+                "id": "mr_note",
+                "type": "text",
+                "text": {
+                  "type": "constant",
+                  "value_type": "string",
+                  "value": "Dwarves & Qunari: +2 | Qunari/Tal-Vashoth: -1 to resist spells. Set above as net modifier."
+                },
+                "style": "caption"
+              }
+            ],
+            "show_divider": true
+          },
+          {
+            "id": "weapon_groups_section",
+            "type": "section",
+            "collapsible": true,
+            "start_collapsed": true,
+            "show_divider": false,
+            "header": [
+              {
+                "id": "wg_header",
+                "type": "text",
+                "text": {
+                  "type": "constant",
+                  "value_type": "string",
+                  "value": "Weapon Groups"
+                },
+                "style": "section"
+              }
+            ],
+            "content": [
+              {
+                "id": "wg_bludgeons",
+                "type": "checkbox",
+                "stat": "weapon_group_bludgeons",
+                "label": {
+                  "type": "constant",
+                  "value_type": "string",
+                  "value": "Bludgeons"
+                },
+                "should_auto_save": true
+              },
+              {
+                "id": "wg_bows",
+                "type": "checkbox",
+                "stat": "weapon_group_bows",
+                "label": {
+                  "type": "constant",
+                  "value_type": "string",
+                  "value": "Bows"
+                },
+                "should_auto_save": true
+              },
+              {
+                "id": "wg_brawling",
+                "type": "checkbox",
+                "stat": "weapon_group_brawling",
+                "label": {
+                  "type": "constant",
+                  "value_type": "string",
+                  "value": "Brawling"
+                },
+                "should_auto_save": true
+              },
+              {
+                "id": "wg_dueling",
+                "type": "checkbox",
+                "stat": "weapon_group_dueling",
+                "label": {
+                  "type": "constant",
+                  "value_type": "string",
+                  "value": "Dueling"
+                },
+                "should_auto_save": true
+              },
+              {
+                "id": "wg_heavy_blades",
+                "type": "checkbox",
+                "stat": "weapon_group_heavy_blades",
+                "label": {
+                  "type": "constant",
+                  "value_type": "string",
+                  "value": "Heavy Blades"
+                },
+                "should_auto_save": true
+              },
+              {
+                "id": "wg_light_blades",
+                "type": "checkbox",
+                "stat": "weapon_group_light_blades",
+                "label": {
+                  "type": "constant",
+                  "value_type": "string",
+                  "value": "Light Blades"
+                },
+                "should_auto_save": true
+              },
+              {
+                "id": "wg_lances",
+                "type": "checkbox",
+                "stat": "weapon_group_lances",
+                "label": {
+                  "type": "constant",
+                  "value_type": "string",
+                  "value": "Lances"
+                },
+                "should_auto_save": true
+              },
+              {
+                "id": "wg_polearms",
+                "type": "checkbox",
+                "stat": "weapon_group_polearms",
+                "label": {
+                  "type": "constant",
+                  "value_type": "string",
+                  "value": "Polearms"
+                },
+                "should_auto_save": true
+              },
+              {
+                "id": "wg_staves",
+                "type": "checkbox",
+                "stat": "weapon_group_staves",
+                "label": {
+                  "type": "constant",
+                  "value_type": "string",
+                  "value": "Staves"
+                },
+                "should_auto_save": true
+              },
+              {
+                "id": "wg_thrown",
+                "type": "checkbox",
+                "stat": "weapon_group_thrown",
+                "label": {
+                  "type": "constant",
+                  "value_type": "string",
+                  "value": "Thrown"
+                },
+                "should_auto_save": true
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "type": "CharacterSheetSection",
+      "id": "talents",
+      "view": {
+        "id": "talents_root",
+        "type": "list",
+        "subviews": [
+          {
+            "id": "talents_note",
+            "type": "text",
+            "text": {
+              "type": "constant",
+              "value_type": "string",
+              "value": "Talents are special abilities gained through class advancement or the Talent talent. Each has three degrees: Novice, Journeyman, and Master."
+            },
+            "style": "caption"
+          },
+          {
+            "id": "talents_list_view",
+            "type": "resourceArray",
+            "resource_id": "talent",
+            "stat": "talents",
+            "view_type": "list",
+            "pop_up_type": "bottomSheet",
+            "pop_up_button_text": {
+              "type": "constant",
+              "value_type": "string",
+              "value": "Add Talent"
+            }
+          },
+          {
+            "id": "talents_divider",
+            "type": "divider"
+          },
+          {
+            "id": "specializations_note",
+            "type": "text",
+            "text": {
+              "type": "constant",
+              "value_type": "string",
+              "value": "Specializations are unlocked at level 6 and represent deeper mastery of your class archetype. Track your specialization in your Notes."
+            },
+            "style": "text"
+          }
+        ]
+      }
+    },
+    {
+      "type": "CharacterSheetSection",
+      "id": "spells",
+      "view": {
+        "id": "spells_root",
+        "type": "list",
+        "subviews": [
+          {
+            "id": "mana_summary",
+            "type": "section",
+            "header": [],
+            "content": [
+              {
+                "id": "mana_display",
+                "type": "stat",
+                "stat": "current_mana",
+                "style": "block"
+              },
+              {
+                "id": "max_mana_display",
+                "type": "stat",
+                "stat": "max_mana",
+                "style": "block"
+              }
+            ],
+            "content_item_min_width": 100
+          },
+          {
+            "id": "spells_note",
+            "type": "text",
+            "text": {
+              "type": "constant",
+              "value_type": "string",
+              "value": "Mages begin with four spells. New spells are learned via training or at certain levels. Casting requires a Magic (spell school) test vs. target number. Failure on a 1,2,3 on the Dragon Die may cause a Mishap."
+            },
+            "style": "caption"
+          },
+          {
+            "id": "spells_list_view",
+            "type": "resourceArray",
+            "resource_id": "spell",
+            "stat": "spells",
+            "view_type": "list",
+            "pop_up_type": "bottomSheet",
+            "pop_up_button_text": {
+              "type": "constant",
+              "value_type": "string",
+              "value": "Add Spell"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "type": "CharacterSheetSection",
+      "id": "equipment",
+      "view": {
+        "id": "equipment_root",
+        "type": "list",
+        "subviews": [
+          {
+            "id": "currency_section",
+            "type": "section",
+            "header": [
+              {
+                "id": "currency_header",
+                "type": "text",
+                "text": {
+                  "type": "constant",
+                  "value_type": "string",
+                  "value": "Currency"
+                },
+                "style": "section"
+              }
+            ],
+            "content": [
+              {
+                "id": "gold_stat",
+                "type": "stat",
+                "stat": "gold_pieces",
+                "style": "block"
+              },
+              {
+                "id": "silver_stat",
+                "type": "stat",
+                "stat": "silver_pieces",
+                "style": "block"
+              },
+              {
+                "id": "copper_stat",
+                "type": "stat",
+                "stat": "copper_pieces",
+                "style": "block"
+              }
+            ],
+            "content_item_min_width": 72,
+            "show_divider": true
+          },
+          {
+            "id": "weapons_section",
+            "type": "section",
+            "header": [
+              {
+                "id": "weapons_header",
+                "type": "text",
+                "text": {
+                  "type": "constant",
+                  "value_type": "string",
+                  "value": "Weapons"
+                },
+                "style": "section"
+              }
+            ],
+            "content": [
+              {
+                "id": "weapons_list_view",
+                "type": "resourceArray",
+                "resource_id": "weapon",
+                "stat": "weapons",
+                "view_type": "list",
+                "pop_up_type": "bottomSheet",
+                "pop_up_button_text": {
+                  "type": "constant",
+                  "value_type": "string",
+                  "value": "Add Weapon"
+                }
+              }
+            ]
+          },
+          {
+            "id": "armor_section",
+            "type": "section",
+            "header": [
+              {
+                "id": "armor_header",
+                "type": "text",
+                "text": {
+                  "type": "constant",
+                  "value_type": "string",
+                  "value": "Armor & Shields"
+                },
+                "style": "section"
+              }
+            ],
+            "content": [
+              {
+                "id": "armor_list_view",
+                "type": "resourceArray",
+                "resource_id": "armor",
+                "stat": "armors",
+                "view_type": "list",
+                "pop_up_type": "bottomSheet",
+                "pop_up_button_text": {
+                  "type": "constant",
+                  "value_type": "string",
+                  "value": "Add Armor"
+                }
+              }
+            ]
+          },
+          {
+            "id": "items_section",
+            "type": "section",
+            "header": [
+              {
+                "id": "items_header",
+                "type": "text",
+                "text": {
+                  "type": "constant",
+                  "value_type": "string",
+                  "value": "Other Equipment"
+                },
+                "style": "section"
+              }
+            ],
+            "content": [
+              {
+                "id": "items_list_view",
+                "type": "resourceArray",
+                "resource_id": "item",
+                "stat": "items",
+                "view_type": "list",
+                "pop_up_type": "bottomSheet",
+                "pop_up_button_text": {
+                  "type": "constant",
+                  "value_type": "string",
+                  "value": "Add Item"
+                }
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "type": "CharacterSheetSection",
+      "id": "biography",
+      "view": {
+        "id": "bio_root",
+        "type": "list",
+        "subviews": [
+          {
+            "id": "identity_section",
+            "type": "section",
+            "header": [
+              {
+                "id": "identity_header",
+                "type": "text",
+                "text": {
+                  "type": "constant",
+                  "value_type": "string",
+                  "value": "Identity"
+                },
+                "style": "section"
+              }
+            ],
+            "content": [
+              {
+                "id": "bio_name",
+                "type": "text",
+                "text": {
+                  "type": "stat",
+                  "stat": "character_name"
+                },
+                "edit_stat": "character_name",
+                "style": "text",
+                "label": {
+                  "type": "constant",
+                  "value_type": "string",
+                  "value": "Name"
+                }
+              },
+              {
+                "id": "bio_pronouns",
+                "type": "text",
+                "text": {
+                  "type": "stat",
+                  "stat": "pronouns"
+                },
+                "edit_stat": "pronouns",
+                "style": "text",
+                "label": {
+                  "type": "constant",
+                  "value_type": "string",
+                  "value": "Pronouns"
+                }
+              },
+              {
+                "id": "bio_age",
+                "type": "text",
+                "text": {
+                  "type": "stat",
+                  "stat": "age"
+                },
+                "edit_stat": "age",
+                "style": "text",
+                "label": {
+                  "type": "constant",
+                  "value_type": "string",
+                  "value": "Age"
+                }
+              },
+              {
+                "id": "bio_race",
+                "type": "text",
+                "text": {
+                  "type": "enumeratedName",
+                  "enumerated_type": "da_race",
+                  "id": {
+                    "type": "stat",
+                    "stat": "race"
+                  }
+                },
+                "style": "text",
+                "label": {
+                  "type": "constant",
+                  "value_type": "string",
+                  "value": "Race"
+                }
+              },
+              {
+                "id": "bio_bg",
+                "type": "text",
+                "text": {
+                  "type": "enumeratedName",
+                  "enumerated_type": "da_background",
+                  "id": {
+                    "type": "stat",
+                    "stat": "background"
+                  }
+                },
+                "style": "text",
+                "label": {
+                  "type": "constant",
+                  "value_type": "string",
+                  "value": "Background"
+                }
+              },
+              {
+                "id": "bio_class",
+                "type": "text",
+                "text": {
+                  "type": "enumeratedName",
+                  "enumerated_type": "da_class",
+                  "id": {
+                    "type": "stat",
+                    "stat": "character_class"
+                  }
+                },
+                "style": "text",
+                "label": {
+                  "type": "constant",
+                  "value_type": "string",
+                  "value": "Class"
+                }
+              }
+            ],
+            "show_divider": true
+          },
+          {
+            "id": "appearance_section",
+            "type": "section",
+            "header": [
+              {
+                "id": "appearance_header",
+                "type": "text",
+                "text": {
+                  "type": "constant",
+                  "value_type": "string",
+                  "value": "Appearance"
+                },
+                "style": "section"
+              }
+            ],
+            "content": [
+              {
+                "id": "appearance_text",
+                "type": "text",
+                "text": {
+                  "type": "stat",
+                  "stat": "appearance"
+                },
+                "edit_stat": "appearance",
+                "style": "text",
+                "hint": {
+                  "type": "constant",
+                  "value_type": "string",
+                  "value": "Describe your character's appearance..."
+                }
+              }
+            ],
+            "show_divider": true
+          },
+          {
+            "id": "goals_section",
+            "type": "section",
+            "header": [
+              {
+                "id": "goals_header",
+                "type": "text",
+                "text": {
+                  "type": "constant",
+                  "value_type": "string",
+                  "value": "Goals"
+                },
+                "style": "section"
+              }
+            ],
+            "content": [
+              {
+                "id": "goals_text",
+                "type": "text",
+                "text": {
+                  "type": "stat",
+                  "stat": "goals"
+                },
+                "edit_stat": "goals",
+                "style": "text",
+                "hint": {
+                  "type": "constant",
+                  "value_type": "string",
+                  "value": "What drives your character forward?"
+                }
+              }
+            ],
+            "show_divider": true
+          },
+          {
+            "id": "ties_section",
+            "type": "section",
+            "header": [
+              {
+                "id": "ties_header",
+                "type": "text",
+                "text": {
+                  "type": "constant",
+                  "value_type": "string",
+                  "value": "Ties"
+                },
+                "style": "section"
+              }
+            ],
+            "content": [
+              {
+                "id": "ties_text",
+                "type": "text",
+                "text": {
+                  "type": "stat",
+                  "stat": "ties"
+                },
+                "edit_stat": "ties",
+                "style": "text",
+                "hint": {
+                  "type": "constant",
+                  "value_type": "string",
+                  "value": "What connects your character to others?"
+                }
+              }
+            ],
+            "show_divider": true
+          },
+          {
+            "id": "backstory_section",
+            "type": "section",
+            "header": [
+              {
+                "id": "backstory_header",
+                "type": "text",
+                "text": {
+                  "type": "constant",
+                  "value_type": "string",
+                  "value": "Background Story"
+                },
+                "style": "section"
+              }
+            ],
+            "content": [
+              {
+                "id": "backstory_text",
+                "type": "text",
+                "text": {
+                  "type": "stat",
+                  "stat": "background_story"
+                },
+                "edit_stat": "background_story",
+                "style": "text",
+                "hint": {
+                  "type": "constant",
+                  "value_type": "string",
+                  "value": "Write your character's history..."
+                }
+              }
+            ],
+            "show_divider": true
+          },
+          {
+            "id": "reputation_section",
+            "type": "section",
+            "header": [
+              {
+                "id": "rep_header",
+                "type": "text",
+                "text": {
+                  "type": "constant",
+                  "value_type": "string",
+                  "value": "Reputation"
+                },
+                "style": "section"
+              }
+            ],
+            "content": [
+              {
+                "id": "rep_stat",
+                "type": "stat",
+                "stat": "reputation",
+                "style": "list"
+              }
+            ],
+            "show_divider": true
+          },
+          {
+            "id": "notes_section",
+            "type": "section",
+            "header": [
+              {
+                "id": "notes_header",
+                "type": "text",
+                "text": {
+                  "type": "constant",
+                  "value_type": "string",
+                  "value": "Notes"
+                },
+                "style": "section"
+              }
+            ],
+            "content": [
+              {
+                "id": "notes_text",
+                "type": "text",
+                "text": {
+                  "type": "stat",
+                  "stat": "notes"
+                },
+                "edit_stat": "notes",
+                "style": "text",
+                "hint": {
+                  "type": "constant",
+                  "value_type": "string",
+                  "value": "Session notes, reminders, etc."
+                }
+              }
+            ]
+          }
+        ]
+      }
+    }
+  ],
+  "character_creation_flow": [
+    {
+      "type": "CharacterCreationPage",
+      "title": "Basics",
+      "view": {
+        "id": "basics_root",
+        "type": "list",
+        "subviews": [
+          {
+            "id": "avatar_row",
+            "type": "composite",
+            "row_only": true,
+            "alignment": "center",
+            "subviews": [
+              {
+                "id": "char_avatar",
+                "type": "avatar",
+                "photo_stat": "photo",
+                "name_stat": "character_name",
+                "size": "massive",
+                "interactable": true
+              }
+            ]
+          },
+          {
+            "id": "name_field",
+            "type": "text",
+            "text": {
+              "type": "stat",
+              "stat": "character_name"
+            },
+            "edit_stat": "character_name",
+            "style": "title",
+            "hint": {
+              "type": "constant",
+              "value_type": "string",
+              "value": "Character Name"
+            },
+            "label": {
+              "type": "constant",
+              "value_type": "string",
+              "value": "Name"
+            }
+          },
+          {
+            "id": "pronouns_field",
+            "type": "text",
+            "text": {
+              "type": "stat",
+              "stat": "pronouns"
+            },
+            "edit_stat": "pronouns",
+            "style": "text",
+            "hint": {
+              "type": "constant",
+              "value_type": "string",
+              "value": "e.g. she/her, he/him, they/them"
+            },
+            "label": {
+              "type": "constant",
+              "value_type": "string",
+              "value": "Pronouns"
+            }
+          },
+          {
+            "id": "age_field",
+            "type": "text",
+            "text": {
+              "type": "stat",
+              "stat": "age"
+            },
+            "edit_stat": "age",
+            "style": "text",
+            "hint": {
+              "type": "constant",
+              "value_type": "string",
+              "value": "Character age"
+            },
+            "label": {
+              "type": "constant",
+              "value_type": "string",
+              "value": "Age"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "type": "CharacterCreationPage",
+      "title": "Abilities",
+      "view": {
+        "id": "abilities_creation_root",
+        "type": "list",
+        "subviews": [
+          {
+            "id": "abilities_instruction",
+            "type": "text",
+            "text": {
+              "type": "constant",
+              "value_type": "string",
+              "value": "Roll 3d6 eight times and consult the Determining Abilities table (p.11). A result of 3=-2, 4-5=-1, 6-8=0, 9-11=1, 12-14=2, 15-17=3, 18=4. You may then swap any two ability scores."
+            },
+            "style": "text"
+          },
+          {
+            "id": "abilities_grid",
+            "type": "section",
+            "header": [
+              {
+                "id": "abilities_grid_header",
+                "type": "text",
+                "text": {
+                  "type": "constant",
+                  "value_type": "string",
+                  "value": "Core Abilities"
+                },
+                "style": "section"
+              }
+            ],
+            "content": [
+              {
+                "id": "com_ticker",
+                "type": "ticker",
+                "stat": "communication",
+                "label": {
+                  "type": "constant",
+                  "value_type": "string",
+                  "value": "Communication"
+                },
+                "min_value_allowed": -2,
+                "max_value_allowed": 4,
+                "should_auto_save": true
+              },
+              {
+                "id": "con_ticker",
+                "type": "ticker",
+                "stat": "constitution",
+                "label": {
+                  "type": "constant",
+                  "value_type": "string",
+                  "value": "Constitution"
+                },
+                "min_value_allowed": -2,
+                "max_value_allowed": 4,
+                "should_auto_save": true
+              },
+              {
+                "id": "cun_ticker",
+                "type": "ticker",
+                "stat": "cunning",
+                "label": {
+                  "type": "constant",
+                  "value_type": "string",
+                  "value": "Cunning"
+                },
+                "min_value_allowed": -2,
+                "max_value_allowed": 4,
+                "should_auto_save": true
+              },
+              {
+                "id": "dex_ticker",
+                "type": "ticker",
+                "stat": "dexterity",
+                "label": {
+                  "type": "constant",
+                  "value_type": "string",
+                  "value": "Dexterity"
+                },
+                "min_value_allowed": -2,
+                "max_value_allowed": 4,
+                "should_auto_save": true
+              },
+              {
+                "id": "mag_ticker",
+                "type": "ticker",
+                "stat": "magic",
+                "label": {
+                  "type": "constant",
+                  "value_type": "string",
+                  "value": "Magic"
+                },
+                "min_value_allowed": -2,
+                "max_value_allowed": 4,
+                "should_auto_save": true
+              },
+              {
+                "id": "per_ticker",
+                "type": "ticker",
+                "stat": "perception",
+                "label": {
+                  "type": "constant",
+                  "value_type": "string",
+                  "value": "Perception"
+                },
+                "min_value_allowed": -2,
+                "max_value_allowed": 4,
+                "should_auto_save": true
+              },
+              {
+                "id": "str_ticker",
+                "type": "ticker",
+                "stat": "strength",
+                "label": {
+                  "type": "constant",
+                  "value_type": "string",
+                  "value": "Strength"
+                },
+                "min_value_allowed": -2,
+                "max_value_allowed": 4,
+                "should_auto_save": true
+              },
+              {
+                "id": "wil_ticker",
+                "type": "ticker",
+                "stat": "willpower",
+                "label": {
+                  "type": "constant",
+                  "value_type": "string",
+                  "value": "Willpower"
+                },
+                "min_value_allowed": -2,
+                "max_value_allowed": 4,
+                "should_auto_save": true
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "type": "CharacterCreationPage",
+      "title": "Background",
+      "view": {
+        "id": "background_creation_root",
+        "type": "list",
+        "subviews": [
+          {
+            "id": "bg_instruction",
+            "type": "text",
+            "text": {
+              "type": "constant",
+              "value_type": "string",
+              "value": "Your background represents your culture and upbringing. It determines your race, available class choices, starting ability increases, and starting focuses. Refer to Chapter 1 of the rulebook for each background's full details."
+            },
+            "style": "text"
+          },
+          {
+            "id": "bg_select_section",
+            "type": "section",
+            "header": [
+              {
+                "id": "bg_select_header",
+                "type": "text",
+                "text": {
+                  "type": "constant",
+                  "value_type": "string",
+                  "value": "Choose Background"
+                },
+                "style": "section"
+              }
+            ],
+            "content": [
+              {
+                "id": "background_select",
+                "type": "select",
+                "stat": "background",
+                "options": "da_background",
+                "style": "list"
+              }
+            ]
+          },
+          {
+            "id": "race_select_section",
+            "type": "section",
+            "header": [
+              {
+                "id": "race_select_header",
+                "type": "text",
+                "text": {
+                  "type": "constant",
+                  "value_type": "string",
+                  "value": "Race"
+                },
+                "style": "section"
+              }
+            ],
+            "content": [
+              {
+                "id": "race_select",
+                "type": "select",
+                "stat": "race",
+                "options": "da_race",
+                "style": "dropdown"
+              }
+            ]
+          },
+          {
+            "id": "bg_focuses_instruction",
+            "type": "text",
+            "text": {
+              "type": "constant",
+              "value_type": "string",
+              "value": "After choosing your background, apply your ability score increases and starting focuses on the Abilities & Focuses page of your character sheet."
+            },
+            "style": "text"
+          }
+        ]
+      }
+    },
+    {
+      "type": "CharacterCreationPage",
+      "title": "Class",
+      "view": {
+        "id": "class_creation_root",
+        "type": "list",
+        "subviews": [
+          {
+            "id": "class_instruction",
+            "type": "text",
+            "text": {
+              "type": "constant",
+              "value_type": "string",
+              "value": "Choose your class. Your background determines which classes are available to you. Mages use Magic and Willpower, Rogues use Dexterity and Communication, and Warriors use Strength and Constitution."
+            },
+            "style": "text"
+          },
+          {
+            "id": "class_select_section",
+            "type": "section",
+            "header": [
+              {
+                "id": "class_select_header",
+                "type": "text",
+                "text": {
+                  "type": "constant",
+                  "value_type": "string",
+                  "value": "Choose Class"
+                },
+                "style": "section"
+              }
+            ],
+            "content": [
+              {
+                "id": "class_select",
+                "type": "select",
+                "stat": "character_class",
+                "options": "da_class",
+                "style": "list"
+              }
+            ]
+          },
+          {
+            "id": "health_section",
+            "type": "section",
+            "header": [
+              {
+                "id": "health_header",
+                "type": "text",
+                "text": {
+                  "type": "constant",
+                  "value_type": "string",
+                  "value": "Starting Health"
+                },
+                "style": "section"
+              }
+            ],
+            "content": [
+              {
+                "id": "health_instruction",
+                "type": "text",
+                "text": {
+                  "type": "constant",
+                  "value_type": "string",
+                  "value": "Warrior: 30 + (Constitution × 5) | Rogue: 25 + (Constitution × 4) | Mage: 20 + (Constitution × 3). Set your Max Health and Current Health accordingly."
+                },
+                "style": "text"
+              },
+              {
+                "id": "max_health_ticker",
+                "type": "ticker",
+                "stat": "max_health",
+                "label": {
+                  "type": "constant",
+                  "value_type": "string",
+                  "value": "Max Health"
+                },
+                "min_value_allowed": 1,
+                "max_value_allowed": 500,
+                "should_auto_save": true
+              },
+              {
+                "id": "cur_health_ticker",
+                "type": "ticker",
+                "stat": "current_health",
+                "label": {
+                  "type": "constant",
+                  "value_type": "string",
+                  "value": "Current Health"
+                },
+                "min_value_allowed": 0,
+                "max_value_allowed": 500,
+                "should_auto_save": true
+              }
+            ]
+          },
+          {
+            "id": "mana_section",
+            "type": "section",
+            "is_visible": {
+              "type": "equals",
+              "components": {
+                "type": "list",
+                "components": [
+                  {
+                    "type": "stat",
+                    "stat": "character_class"
+                  },
+                  {
+                    "type": "constant",
+                    "value_type": "string",
+                    "value": "mage"
+                  }
+                ]
+              }
+            },
+            "header": [
+              {
+                "id": "mana_header",
+                "type": "text",
+                "text": {
+                  "type": "constant",
+                  "value_type": "string",
+                  "value": "Mana Points"
+                },
+                "style": "section"
+              }
+            ],
+            "content": [
+              {
+                "id": "mana_instruction",
+                "type": "text",
+                "text": {
+                  "type": "constant",
+                  "value_type": "string",
+                  "value": "Starting Mana = (Magic × 10) + (Willpower × 5). Set your Max Mana and Current Mana below."
+                },
+                "style": "text"
+              },
+              {
+                "id": "max_mana_ticker",
+                "type": "ticker",
+                "stat": "max_mana",
+                "label": {
+                  "type": "constant",
+                  "value_type": "string",
+                  "value": "Max Mana"
+                },
+                "min_value_allowed": 0,
+                "max_value_allowed": 500,
+                "should_auto_save": true
+              },
+              {
+                "id": "cur_mana_ticker",
+                "type": "ticker",
+                "stat": "current_mana",
+                "label": {
+                  "type": "constant",
+                  "value_type": "string",
+                  "value": "Current Mana"
+                },
+                "min_value_allowed": 0,
+                "max_value_allowed": 500,
+                "should_auto_save": true
+              }
+            ]
+          },
+          {
+            "id": "weapon_groups_section",
+            "type": "section",
+            "header": [
+              {
+                "id": "wg_header",
+                "type": "text",
+                "text": {
+                  "type": "constant",
+                  "value_type": "string",
+                  "value": "Starting Weapon Groups"
+                },
+                "style": "section"
+              }
+            ],
+            "content": [
+              {
+                "id": "wg_instruction",
+                "type": "text",
+                "text": {
+                  "type": "constant",
+                  "value_type": "string",
+                  "value": "Check all weapon groups your class grants you. Refer to your class description for the full list."
+                },
+                "style": "text"
+              },
+              {
+                "id": "wg_bludgeons",
+                "type": "checkbox",
+                "stat": "weapon_group_bludgeons",
+                "label": {
+                  "type": "constant",
+                  "value_type": "string",
+                  "value": "Bludgeons"
+                },
+                "should_auto_save": true
+              },
+              {
+                "id": "wg_bows",
+                "type": "checkbox",
+                "stat": "weapon_group_bows",
+                "label": {
+                  "type": "constant",
+                  "value_type": "string",
+                  "value": "Bows"
+                },
+                "should_auto_save": true
+              },
+              {
+                "id": "wg_brawling",
+                "type": "checkbox",
+                "stat": "weapon_group_brawling",
+                "label": {
+                  "type": "constant",
+                  "value_type": "string",
+                  "value": "Brawling"
+                },
+                "should_auto_save": true
+              },
+              {
+                "id": "wg_dueling",
+                "type": "checkbox",
+                "stat": "weapon_group_dueling",
+                "label": {
+                  "type": "constant",
+                  "value_type": "string",
+                  "value": "Dueling"
+                },
+                "should_auto_save": true
+              },
+              {
+                "id": "wg_heavy_blades",
+                "type": "checkbox",
+                "stat": "weapon_group_heavy_blades",
+                "label": {
+                  "type": "constant",
+                  "value_type": "string",
+                  "value": "Heavy Blades"
+                },
+                "should_auto_save": true
+              },
+              {
+                "id": "wg_light_blades",
+                "type": "checkbox",
+                "stat": "weapon_group_light_blades",
+                "label": {
+                  "type": "constant",
+                  "value_type": "string",
+                  "value": "Light Blades"
+                },
+                "should_auto_save": true
+              },
+              {
+                "id": "wg_lances",
+                "type": "checkbox",
+                "stat": "weapon_group_lances",
+                "label": {
+                  "type": "constant",
+                  "value_type": "string",
+                  "value": "Lances"
+                },
+                "should_auto_save": true
+              },
+              {
+                "id": "wg_polearms",
+                "type": "checkbox",
+                "stat": "weapon_group_polearms",
+                "label": {
+                  "type": "constant",
+                  "value_type": "string",
+                  "value": "Polearms"
+                },
+                "should_auto_save": true
+              },
+              {
+                "id": "wg_staves",
+                "type": "checkbox",
+                "stat": "weapon_group_staves",
+                "label": {
+                  "type": "constant",
+                  "value_type": "string",
+                  "value": "Staves"
+                },
+                "should_auto_save": true
+              },
+              {
+                "id": "wg_thrown",
+                "type": "checkbox",
+                "stat": "weapon_group_thrown",
+                "label": {
+                  "type": "constant",
+                  "value_type": "string",
+                  "value": "Thrown"
+                },
+                "should_auto_save": true
+              }
+            ]
+          }
+        ]
+      }
+    }
+  ],
+  "enumerated_types": [
+    {
+      "type": "EnumeratedType",
+      "id": "da_class",
+      "name": "Class",
+      "plural": "Classes",
+      "types": [
+        {
+          "id": "mage",
+          "name": "Mage",
+          "abbreviation": "Mage"
+        },
+        {
+          "id": "rogue",
+          "name": "Rogue",
+          "abbreviation": "Rogue"
+        },
+        {
+          "id": "warrior",
+          "name": "Warrior",
+          "abbreviation": "Warrior"
+        }
+      ]
+    },
+    {
+      "type": "EnumeratedType",
+      "id": "da_race",
+      "name": "Race",
+      "plural": "Races",
+      "types": [
+        {
+          "id": "human",
+          "name": "Human"
+        },
+        {
+          "id": "elf",
+          "name": "Elf"
+        },
+        {
+          "id": "dwarf",
+          "name": "Dwarf"
+        },
+        {
+          "id": "qunari",
+          "name": "Qunari"
+        },
+        {
+          "id": "tal_vashoth",
+          "name": "Tal-Vashoth"
+        }
+      ]
+    },
+    {
+      "type": "EnumeratedType",
+      "id": "da_background",
+      "name": "Background",
+      "plural": "Backgrounds",
+      "types": [
+        {
+          "id": "ander_survivor",
+          "name": "Ander Survivor"
+        },
+        {
+          "id": "apostate",
+          "name": "Apostate"
+        },
+        {
+          "id": "antivan_wayfarer",
+          "name": "Antivan Wayfarer"
+        },
+        {
+          "id": "avvar",
+          "name": "Avvar"
+        },
+        {
+          "id": "chasind_wilder",
+          "name": "Chasind Wilder"
+        },
+        {
+          "id": "circle_mage",
+          "name": "Circle Mage"
+        },
+        {
+          "id": "city_elf",
+          "name": "City Elf"
+        },
+        {
+          "id": "dalish_elf",
+          "name": "Dalish Elf"
+        },
+        {
+          "id": "dwarf_duster",
+          "name": "Dwarf Duster"
+        },
+        {
+          "id": "escaped_elven_slave",
+          "name": "Escaped Elven Slave"
+        },
+        {
+          "id": "fereldan_craftsman",
+          "name": "Fereldan Craftsman"
+        },
+        {
+          "id": "fereldan_freeman",
+          "name": "Fereldan Freeman"
+        },
+        {
+          "id": "fereldan_noble",
+          "name": "Fereldan Noble"
+        },
+        {
+          "id": "free_marcher",
+          "name": "Free Marcher"
+        },
+        {
+          "id": "high_born_dwarf",
+          "name": "High-Born Dwarf"
+        },
+        {
+          "id": "low_born_dwarf",
+          "name": "Low-Born Dwarf"
+        },
+        {
+          "id": "nevarran_adventurer",
+          "name": "Nevarran Adventurer"
+        },
+        {
+          "id": "orlesian_commoner",
+          "name": "Orlesian Commoner"
+        },
+        {
+          "id": "orlesian_exile",
+          "name": "Orlesian Exile"
+        },
+        {
+          "id": "orlesian_noble",
+          "name": "Orlesian Noble"
+        },
+        {
+          "id": "orlesian_student",
+          "name": "Orlesian Student"
+        },
+        {
+          "id": "qunari_beresaad",
+          "name": "Qunari Beresaad"
+        },
+        {
+          "id": "rivaini_merchant",
+          "name": "Rivaini Merchant"
+        },
+        {
+          "id": "seheron_convert",
+          "name": "Seheron Convert"
+        },
+        {
+          "id": "surface_dwarf",
+          "name": "Surface Dwarf"
+        },
+        {
+          "id": "tal_vashoth",
+          "name": "Tal-Vashoth"
+        },
+        {
+          "id": "tevinter_altus",
+          "name": "Tevinter Altus"
+        },
+        {
+          "id": "tevinter_laetan",
+          "name": "Tevinter Laetan"
+        },
+        {
+          "id": "tevinter_soporati",
+          "name": "Tevinter Soporati"
+        },
+        {
+          "id": "waking_sea_raider",
+          "name": "Waking Sea Raider"
+        }
+      ]
+    },
+    {
+      "type": "EnumeratedType",
+      "id": "da_weapon_group",
+      "name": "Weapon Group",
+      "plural": "Weapon Groups",
+      "types": [
+        {
+          "id": "bludgeons",
+          "name": "Bludgeons"
+        },
+        {
+          "id": "bows",
+          "name": "Bows"
+        },
+        {
+          "id": "brawling",
+          "name": "Brawling"
+        },
+        {
+          "id": "dueling",
+          "name": "Dueling"
+        },
+        {
+          "id": "heavy_blades",
+          "name": "Heavy Blades"
+        },
+        {
+          "id": "light_blades",
+          "name": "Light Blades"
+        },
+        {
+          "id": "lances",
+          "name": "Lances"
+        },
+        {
+          "id": "polearms",
+          "name": "Polearms"
+        },
+        {
+          "id": "staves",
+          "name": "Staves"
+        },
+        {
+          "id": "thrown",
+          "name": "Thrown"
+        }
+      ]
+    },
+    {
+      "type": "EnumeratedType",
+      "id": "da_spell_school",
+      "name": "Spell School",
+      "plural": "Spell Schools",
+      "types": [
+        {
+          "id": "creation",
+          "name": "Creation",
+          "abbreviation": "Cre"
+        },
+        {
+          "id": "entropy",
+          "name": "Entropy",
+          "abbreviation": "Ent"
+        },
+        {
+          "id": "primal",
+          "name": "Primal",
+          "abbreviation": "Pri"
+        },
+        {
+          "id": "spirit",
+          "name": "Spirit",
+          "abbreviation": "Spi"
+        },
+        {
+          "id": "blood_magic",
+          "name": "Blood Magic",
+          "abbreviation": "BM"
+        }
+      ]
+    },
+    {
+      "type": "EnumeratedType",
+      "id": "da_talent_degree",
+      "name": "Talent Degree",
+      "plural": "Talent Degrees",
+      "types": [
+        {
+          "id": "novice",
+          "name": "Novice"
+        },
+        {
+          "id": "journeyman",
+          "name": "Journeyman"
+        },
+        {
+          "id": "master",
+          "name": "Master"
+        }
+      ]
+    },
+    {
+      "type": "EnumeratedType",
+      "id": "da_armor_type",
+      "name": "Armor Type",
+      "plural": "Armor Types",
+      "types": [
+        {
+          "id": "light",
+          "name": "Light Armor"
+        },
+        {
+          "id": "medium",
+          "name": "Medium Armor"
+        },
+        {
+          "id": "heavy",
+          "name": "Heavy Armor"
+        },
+        {
+          "id": "shield",
+          "name": "Shield"
+        }
+      ]
+    }
+  ],
+  "resources": [
+    {
+      "armor": {
+        "type": "Resource",
+        "id": "armor",
+        "name": "Armor",
+        "plural": "Armor & Shields",
+        "core": true,
+        "color": "systemBlue",
+        "display_view": {
+          "id": "armor_display",
+          "type": "list",
+          "subviews": [
+            {
+              "id": "a_name",
+              "type": "text",
+              "text": {
+                "type": "stat",
+                "stat": "armor_name"
+              },
+              "style": "headline"
+            },
+            {
+              "id": "a_type_row",
+              "type": "composite",
+              "row_only": true,
+              "subviews": [
+                {
+                  "id": "a_type_lbl",
+                  "type": "text",
+                  "text": {
+                    "type": "constant",
+                    "value_type": "string",
+                    "value": "Type: "
+                  },
+                  "style": "subhead",
+                  "bold": true
+                },
+                {
+                  "id": "a_type_val",
+                  "type": "text",
+                  "text": {
+                    "type": "enumeratedName",
+                    "enumerated_type": "da_armor_type",
+                    "id": {
+                      "type": "stat",
+                      "stat": "armor_type"
+                    }
+                  },
+                  "style": "subhead"
+                }
+              ]
+            },
+            {
+              "id": "a_stats_row",
+              "type": "composite",
+              "row_only": true,
+              "subviews": [
+                {
+                  "id": "a_ar_stat",
+                  "type": "stat",
+                  "stat": "armor_rating_val",
+                  "style": "block"
+                },
+                {
+                  "id": "a_ap_stat",
+                  "type": "stat",
+                  "stat": "armor_penalty_val",
+                  "style": "block"
+                }
+              ]
+            },
+            {
+              "id": "a_cost_row",
+              "type": "composite",
+              "row_only": true,
+              "subviews": [
+                {
+                  "id": "a_cost_lbl",
+                  "type": "text",
+                  "text": {
+                    "type": "constant",
+                    "value_type": "string",
+                    "value": "Cost: "
+                  },
+                  "style": "text",
+                  "bold": true
+                },
+                {
+                  "id": "a_cost_val",
+                  "type": "text",
+                  "text": {
+                    "type": "stat",
+                    "stat": "armor_cost"
+                  },
+                  "style": "text"
+                }
+              ]
+            },
+            {
+              "id": "a_divider",
+              "type": "divider"
+            },
+            {
+              "id": "a_notes",
+              "type": "text",
+              "text": {
+                "type": "stat",
+                "stat": "armor_notes"
+              },
+              "style": "text"
+            }
+          ]
+        },
+        "edit_view": {
+          "id": "armor_edit",
+          "type": "list",
+          "subviews": [
+            {
+              "id": "a_name_edit",
+              "type": "text",
+              "text": {
+                "type": "stat",
+                "stat": "armor_name"
+              },
+              "edit_stat": "armor_name",
+              "style": "title",
+              "hint": {
+                "type": "constant",
+                "value_type": "string",
+                "value": "Armor Name"
+              }
+            },
+            {
+              "id": "a_type_edit",
+              "type": "select",
+              "stat": "armor_type",
+              "options": "da_armor_type",
+              "style": "dropdown"
+            },
+            {
+              "id": "a_ar_ticker",
+              "type": "ticker",
+              "stat": "armor_rating_val",
+              "label": {
+                "type": "constant",
+                "value_type": "string",
+                "value": "Armor Rating"
+              },
+              "min_value_allowed": 0,
+              "max_value_allowed": 15,
+              "should_auto_save": true
+            },
+            {
+              "id": "a_ap_ticker",
+              "type": "ticker",
+              "stat": "armor_penalty_val",
+              "label": {
+                "type": "constant",
+                "value_type": "string",
+                "value": "Armor Penalty"
+              },
+              "min_value_allowed": 0,
+              "max_value_allowed": 5,
+              "should_auto_save": true
+            },
+            {
+              "id": "a_cost_edit",
+              "type": "text",
+              "text": {
+                "type": "stat",
+                "stat": "armor_cost"
+              },
+              "edit_stat": "armor_cost",
+              "style": "text",
+              "label": {
+                "type": "constant",
+                "value_type": "string",
+                "value": "Cost"
+              }
+            },
+            {
+              "id": "a_wt_edit",
+              "type": "text",
+              "text": {
+                "type": "stat",
+                "stat": "armor_weight"
+              },
+              "edit_stat": "armor_weight",
+              "style": "text",
+              "label": {
+                "type": "constant",
+                "value_type": "string",
+                "value": "Weight (kg)"
+              }
+            },
+            {
+              "id": "a_notes_edit",
+              "type": "text",
+              "text": {
+                "type": "stat",
+                "stat": "armor_notes"
+              },
+              "edit_stat": "armor_notes",
+              "style": "text",
+              "hint": {
+                "type": "constant",
+                "value_type": "string",
+                "value": "Notes, special properties..."
+              }
+            }
+          ]
+        },
+        "list_view": {
+          "id": "armor_list",
+          "type": "listItem",
+          "title": {
+            "type": "stat",
+            "stat": "armor_name"
+          },
+          "subtitle": {
+            "type": "enumeratedName",
+            "enumerated_type": "da_armor_type",
+            "id": {
+              "type": "stat",
+              "stat": "armor_type"
+            }
+          },
+          "first_line_extra": {
+            "type": "concat",
+            "components": {
+              "type": "list",
+              "components": [
+                {
+                  "type": "constant",
+                  "value_type": "string",
+                  "value": "AR "
+                },
+                {
+                  "type": "stat",
+                  "stat": "armor_rating_val"
+                },
+                {
+                  "type": "constant",
+                  "value_type": "string",
+                  "value": " / AP "
+                },
+                {
+                  "type": "stat",
+                  "stat": "armor_penalty_val"
+                }
+              ]
+            }
+          }
+        },
+        "search_item_view": {
+          "id": "armor_search",
+          "type": "listItem",
+          "title": {
+            "type": "stat",
+            "stat": "armor_name"
+          },
+          "subtitle": {
+            "type": "enumeratedName",
+            "enumerated_type": "da_armor_type",
+            "id": {
+              "type": "stat",
+              "stat": "armor_type"
+            }
+          },
+          "first_line_extra": {
+            "type": "concat",
+            "components": {
+              "type": "list",
+              "components": [
+                {
+                  "type": "constant",
+                  "value_type": "string",
+                  "value": "AR "
+                },
+                {
+                  "type": "stat",
+                  "stat": "armor_rating_val"
+                }
+              ]
+            }
+          }
+        }
+      },
+      "item": {
+        "type": "Resource",
+        "id": "item",
+        "name": "Item",
+        "plural": "Items",
+        "core": true,
+        "color": "systemGreen",
+        "display_view": {
+          "id": "item_display",
+          "type": "list",
+          "subviews": [
+            {
+              "id": "i_name",
+              "type": "text",
+              "text": {
+                "type": "stat",
+                "stat": "item_name"
+              },
+              "style": "headline"
+            },
+            {
+              "id": "i_cat_row",
+              "type": "composite",
+              "row_only": true,
+              "subviews": [
+                {
+                  "id": "i_cat_lbl",
+                  "type": "text",
+                  "text": {
+                    "type": "constant",
+                    "value_type": "string",
+                    "value": "Category: "
+                  },
+                  "style": "subhead",
+                  "bold": true
+                },
+                {
+                  "id": "i_cat_val",
+                  "type": "text",
+                  "text": {
+                    "type": "stat",
+                    "stat": "item_category"
+                  },
+                  "style": "subhead"
+                }
+              ]
+            },
+            {
+              "id": "i_stats_row",
+              "type": "composite",
+              "row_only": true,
+              "subviews": [
+                {
+                  "id": "i_qty",
+                  "type": "stat",
+                  "stat": "item_quantity",
+                  "style": "block"
+                },
+                {
+                  "id": "i_cost_lbl",
+                  "type": "text",
+                  "text": {
+                    "type": "constant",
+                    "value_type": "string",
+                    "value": "Cost: "
+                  },
+                  "style": "text",
+                  "bold": true
+                },
+                {
+                  "id": "i_cost_val",
+                  "type": "text",
+                  "text": {
+                    "type": "stat",
+                    "stat": "item_cost"
+                  },
+                  "style": "text"
+                }
+              ]
+            },
+            {
+              "id": "i_divider",
+              "type": "divider"
+            },
+            {
+              "id": "i_desc",
+              "type": "text",
+              "text": {
+                "type": "stat",
+                "stat": "item_description"
+              },
+              "style": "text"
+            }
+          ]
+        },
+        "edit_view": {
+          "id": "item_edit",
+          "type": "list",
+          "subviews": [
+            {
+              "id": "i_name_edit",
+              "type": "text",
+              "text": {
+                "type": "stat",
+                "stat": "item_name"
+              },
+              "edit_stat": "item_name",
+              "style": "title",
+              "hint": {
+                "type": "constant",
+                "value_type": "string",
+                "value": "Item Name"
+              }
+            },
+            {
+              "id": "i_cat_edit",
+              "type": "text",
+              "text": {
+                "type": "stat",
+                "stat": "item_category"
+              },
+              "edit_stat": "item_category",
+              "style": "text",
+              "label": {
+                "type": "constant",
+                "value_type": "string",
+                "value": "Category"
+              }
+            },
+            {
+              "id": "i_qty_ticker",
+              "type": "ticker",
+              "stat": "item_quantity",
+              "label": {
+                "type": "constant",
+                "value_type": "string",
+                "value": "Quantity"
+              },
+              "min_value_allowed": 0,
+              "max_value_allowed": 9999,
+              "should_auto_save": true
+            },
+            {
+              "id": "i_cost_edit",
+              "type": "text",
+              "text": {
+                "type": "stat",
+                "stat": "item_cost"
+              },
+              "edit_stat": "item_cost",
+              "style": "text",
+              "label": {
+                "type": "constant",
+                "value_type": "string",
+                "value": "Cost"
+              }
+            },
+            {
+              "id": "i_wt_edit",
+              "type": "text",
+              "text": {
+                "type": "stat",
+                "stat": "item_weight"
+              },
+              "edit_stat": "item_weight",
+              "style": "text",
+              "label": {
+                "type": "constant",
+                "value_type": "string",
+                "value": "Weight (kg)"
+              }
+            },
+            {
+              "id": "i_desc_edit",
+              "type": "text",
+              "text": {
+                "type": "stat",
+                "stat": "item_description"
+              },
+              "edit_stat": "item_description",
+              "style": "text",
+              "hint": {
+                "type": "constant",
+                "value_type": "string",
+                "value": "Description..."
+              }
+            }
+          ]
+        },
+        "list_view": {
+          "id": "item_list",
+          "type": "listItem",
+          "title": {
+            "type": "stat",
+            "stat": "item_name"
+          },
+          "subtitle": {
+            "type": "stat",
+            "stat": "item_category"
+          },
+          "first_line_extra": {
+            "type": "concat",
+            "components": {
+              "type": "list",
+              "components": [
+                {
+                  "type": "constant",
+                  "value_type": "string",
+                  "value": "x"
+                },
+                {
+                  "type": "stat",
+                  "stat": "item_quantity"
+                }
+              ]
+            }
+          }
+        },
+        "search_item_view": {
+          "id": "item_search",
+          "type": "listItem",
+          "title": {
+            "type": "stat",
+            "stat": "item_name"
+          },
+          "subtitle": {
+            "type": "stat",
+            "stat": "item_category"
+          },
+          "first_line_extra": {
+            "type": "stat",
+            "stat": "item_cost"
+          }
+        }
+      },
+      "spell": {
+        "type": "Resource",
+        "id": "spell",
+        "name": "Spell",
+        "plural": "Spells",
+        "abbreviation": "SP",
+        "core": true,
+        "color": "systemPurple",
+        "display_view": {
+          "id": "spell_display",
+          "type": "list",
+          "subviews": [
+            {
+              "id": "sp_name",
+              "type": "text",
+              "text": {
+                "type": "stat",
+                "stat": "spell_name"
+              },
+              "style": "headline"
+            },
+            {
+              "id": "sp_school_row",
+              "type": "composite",
+              "row_only": true,
+              "subviews": [
+                {
+                  "id": "sp_school_label",
+                  "type": "text",
+                  "text": {
+                    "type": "constant",
+                    "value_type": "string",
+                    "value": "School: "
+                  },
+                  "style": "subhead",
+                  "bold": true
+                },
+                {
+                  "id": "sp_school_val",
+                  "type": "text",
+                  "text": {
+                    "type": "enumeratedName",
+                    "enumerated_type": "da_spell_school",
+                    "id": {
+                      "type": "stat",
+                      "stat": "spell_school"
+                    }
+                  },
+                  "style": "subhead"
+                }
+              ]
+            },
+            {
+              "id": "sp_stats_row",
+              "type": "composite",
+              "row_only": true,
+              "subviews": [
+                {
+                  "id": "sp_mp",
+                  "type": "stat",
+                  "stat": "mana_cost",
+                  "style": "block"
+                },
+                {
+                  "id": "sp_tn",
+                  "type": "stat",
+                  "stat": "target_number",
+                  "style": "block"
+                }
+              ]
+            },
+            {
+              "id": "sp_ct_row",
+              "type": "composite",
+              "row_only": true,
+              "subviews": [
+                {
+                  "id": "sp_ct_lbl",
+                  "type": "text",
+                  "text": {
+                    "type": "constant",
+                    "value_type": "string",
+                    "value": "Casting Time: "
+                  },
+                  "style": "text",
+                  "bold": true
+                },
+                {
+                  "id": "sp_ct_val",
+                  "type": "text",
+                  "text": {
+                    "type": "stat",
+                    "stat": "casting_time"
+                  },
+                  "style": "text"
+                }
+              ]
+            },
+            {
+              "id": "sp_tgt_row",
+              "type": "composite",
+              "row_only": true,
+              "subviews": [
+                {
+                  "id": "sp_tgt_lbl",
+                  "type": "text",
+                  "text": {
+                    "type": "constant",
+                    "value_type": "string",
+                    "value": "Target: "
+                  },
+                  "style": "text",
+                  "bold": true
+                },
+                {
+                  "id": "sp_tgt_val",
+                  "type": "text",
+                  "text": {
+                    "type": "stat",
+                    "stat": "target"
+                  },
+                  "style": "text"
+                }
+              ]
+            },
+            {
+              "id": "sp_rng_row",
+              "type": "composite",
+              "row_only": true,
+              "subviews": [
+                {
+                  "id": "sp_rng_lbl",
+                  "type": "text",
+                  "text": {
+                    "type": "constant",
+                    "value_type": "string",
+                    "value": "Range: "
+                  },
+                  "style": "text",
+                  "bold": true
+                },
+                {
+                  "id": "sp_rng_val",
+                  "type": "text",
+                  "text": {
+                    "type": "stat",
+                    "stat": "range"
+                  },
+                  "style": "text"
+                }
+              ]
+            },
+            {
+              "id": "sp_dur_row",
+              "type": "composite",
+              "row_only": true,
+              "subviews": [
+                {
+                  "id": "sp_dur_lbl",
+                  "type": "text",
+                  "text": {
+                    "type": "constant",
+                    "value_type": "string",
+                    "value": "Duration: "
+                  },
+                  "style": "text",
+                  "bold": true
+                },
+                {
+                  "id": "sp_dur_val",
+                  "type": "text",
+                  "text": {
+                    "type": "stat",
+                    "stat": "duration"
+                  },
+                  "style": "text"
+                }
+              ]
+            },
+            {
+              "id": "sp_req_row",
+              "type": "composite",
+              "row_only": true,
+              "subviews": [
+                {
+                  "id": "sp_req_lbl",
+                  "type": "text",
+                  "text": {
+                    "type": "constant",
+                    "value_type": "string",
+                    "value": "Requirements: "
+                  },
+                  "style": "text",
+                  "bold": true
+                },
+                {
+                  "id": "sp_req_val",
+                  "type": "text",
+                  "text": {
+                    "type": "stat",
+                    "stat": "requirements"
+                  },
+                  "style": "text"
+                }
+              ]
+            },
+            {
+              "id": "sp_divider",
+              "type": "divider"
+            },
+            {
+              "id": "sp_desc",
+              "type": "text",
+              "text": {
+                "type": "stat",
+                "stat": "description"
+              },
+              "style": "text"
+            }
+          ]
+        },
+        "edit_view": {
+          "id": "spell_edit",
+          "type": "list",
+          "subviews": [
+            {
+              "id": "sp_name_edit",
+              "type": "text",
+              "text": {
+                "type": "stat",
+                "stat": "spell_name"
+              },
+              "edit_stat": "spell_name",
+              "style": "title",
+              "hint": {
+                "type": "constant",
+                "value_type": "string",
+                "value": "Spell Name"
+              }
+            },
+            {
+              "id": "sp_school_edit",
+              "type": "select",
+              "stat": "spell_school",
+              "options": "da_spell_school",
+              "style": "dropdown"
+            },
+            {
+              "id": "sp_mp_ticker",
+              "type": "ticker",
+              "stat": "mana_cost",
+              "label": {
+                "type": "constant",
+                "value_type": "string",
+                "value": "Mana Cost"
+              },
+              "min_value_allowed": 0,
+              "max_value_allowed": 30,
+              "should_auto_save": true
+            },
+            {
+              "id": "sp_tn_ticker",
+              "type": "ticker",
+              "stat": "target_number",
+              "label": {
+                "type": "constant",
+                "value_type": "string",
+                "value": "Target Number"
+              },
+              "min_value_allowed": 5,
+              "max_value_allowed": 25,
+              "should_auto_save": true
+            },
+            {
+              "id": "sp_ct_edit",
+              "type": "text",
+              "text": {
+                "type": "stat",
+                "stat": "casting_time"
+              },
+              "edit_stat": "casting_time",
+              "style": "text",
+              "label": {
+                "type": "constant",
+                "value_type": "string",
+                "value": "Casting Time"
+              }
+            },
+            {
+              "id": "sp_tgt_edit",
+              "type": "text",
+              "text": {
+                "type": "stat",
+                "stat": "target"
+              },
+              "edit_stat": "target",
+              "style": "text",
+              "label": {
+                "type": "constant",
+                "value_type": "string",
+                "value": "Target"
+              }
+            },
+            {
+              "id": "sp_rng_edit",
+              "type": "text",
+              "text": {
+                "type": "stat",
+                "stat": "range"
+              },
+              "edit_stat": "range",
+              "style": "text",
+              "label": {
+                "type": "constant",
+                "value_type": "string",
+                "value": "Range"
+              }
+            },
+            {
+              "id": "sp_dur_edit",
+              "type": "text",
+              "text": {
+                "type": "stat",
+                "stat": "duration"
+              },
+              "edit_stat": "duration",
+              "style": "text",
+              "label": {
+                "type": "constant",
+                "value_type": "string",
+                "value": "Duration"
+              }
+            },
+            {
+              "id": "sp_req_edit",
+              "type": "text",
+              "text": {
+                "type": "stat",
+                "stat": "requirements"
+              },
+              "edit_stat": "requirements",
+              "style": "text",
+              "label": {
+                "type": "constant",
+                "value_type": "string",
+                "value": "Requirements"
+              }
+            },
+            {
+              "id": "sp_desc_edit",
+              "type": "text",
+              "text": {
+                "type": "stat",
+                "stat": "description"
+              },
+              "edit_stat": "description",
+              "style": "text",
+              "label": {
+                "type": "constant",
+                "value_type": "string",
+                "value": "Description"
+              },
+              "hint": {
+                "type": "constant",
+                "value_type": "string",
+                "value": "Full spell description..."
+              }
+            }
+          ]
+        },
+        "list_view": {
+          "id": "spell_list",
+          "type": "listItem",
+          "title": {
+            "type": "stat",
+            "stat": "spell_name"
+          },
+          "subtitle": {
+            "type": "enumeratedName",
+            "enumerated_type": "da_spell_school",
+            "id": {
+              "type": "stat",
+              "stat": "spell_school"
+            }
+          },
+          "first_line_extra": {
+            "type": "concat",
+            "components": {
+              "type": "list",
+              "components": [
+                {
+                  "type": "stat",
+                  "stat": "mana_cost"
+                },
+                {
+                  "type": "constant",
+                  "value_type": "string",
+                  "value": " MP"
+                }
+              ]
+            }
+          }
+        },
+        "search_item_view": {
+          "id": "spell_search",
+          "type": "listItem",
+          "title": {
+            "type": "stat",
+            "stat": "spell_name"
+          },
+          "subtitle": {
+            "type": "enumeratedName",
+            "enumerated_type": "da_spell_school",
+            "id": {
+              "type": "stat",
+              "stat": "spell_school"
+            }
+          },
+          "first_line_extra": {
+            "type": "concat",
+            "components": {
+              "type": "list",
+              "components": [
+                {
+                  "type": "constant",
+                  "value_type": "string",
+                  "value": "TN "
+                },
+                {
+                  "type": "stat",
+                  "stat": "target_number"
+                },
+                {
+                  "type": "constant",
+                  "value_type": "string",
+                  "value": " · "
+                },
+                {
+                  "type": "stat",
+                  "stat": "mana_cost"
+                },
+                {
+                  "type": "constant",
+                  "value_type": "string",
+                  "value": " MP"
+                }
+              ]
+            }
+          }
+        }
+      },
+      "talent": {
+        "type": "Resource",
+        "id": "talent",
+        "name": "Talent",
+        "plural": "Talents",
+        "core": true,
+        "color": "systemOrange",
+        "display_view": {
+          "id": "talent_display",
+          "type": "list",
+          "subviews": [
+            {
+              "id": "t_name",
+              "type": "text",
+              "text": {
+                "type": "stat",
+                "stat": "talent_name"
+              },
+              "style": "headline"
+            },
+            {
+              "id": "t_degree_row",
+              "type": "composite",
+              "row_only": true,
+              "subviews": [
+                {
+                  "id": "t_degree_lbl",
+                  "type": "text",
+                  "text": {
+                    "type": "constant",
+                    "value_type": "string",
+                    "value": "Degree: "
+                  },
+                  "style": "subhead",
+                  "bold": true
+                },
+                {
+                  "id": "t_degree_val",
+                  "type": "text",
+                  "text": {
+                    "type": "enumeratedName",
+                    "enumerated_type": "da_talent_degree",
+                    "id": {
+                      "type": "stat",
+                      "stat": "talent_degree"
+                    }
+                  },
+                  "style": "subhead"
+                }
+              ]
+            },
+            {
+              "id": "t_class_row",
+              "type": "composite",
+              "row_only": true,
+              "subviews": [
+                {
+                  "id": "t_class_lbl",
+                  "type": "text",
+                  "text": {
+                    "type": "constant",
+                    "value_type": "string",
+                    "value": "Class: "
+                  },
+                  "style": "text",
+                  "bold": true
+                },
+                {
+                  "id": "t_class_val",
+                  "type": "text",
+                  "text": {
+                    "type": "stat",
+                    "stat": "talent_class"
+                  },
+                  "style": "text"
+                }
+              ]
+            },
+            {
+              "id": "t_req_row",
+              "type": "composite",
+              "row_only": true,
+              "subviews": [
+                {
+                  "id": "t_req_lbl",
+                  "type": "text",
+                  "text": {
+                    "type": "constant",
+                    "value_type": "string",
+                    "value": "Requirement: "
+                  },
+                  "style": "text",
+                  "bold": true
+                },
+                {
+                  "id": "t_req_val",
+                  "type": "text",
+                  "text": {
+                    "type": "stat",
+                    "stat": "talent_requirement"
+                  },
+                  "style": "text"
+                }
+              ]
+            },
+            {
+              "id": "t_divider",
+              "type": "divider"
+            },
+            {
+              "id": "t_desc",
+              "type": "text",
+              "text": {
+                "type": "stat",
+                "stat": "talent_description"
+              },
+              "style": "text"
+            }
+          ]
+        },
+        "edit_view": {
+          "id": "talent_edit",
+          "type": "list",
+          "subviews": [
+            {
+              "id": "t_name_edit",
+              "type": "text",
+              "text": {
+                "type": "stat",
+                "stat": "talent_name"
+              },
+              "edit_stat": "talent_name",
+              "style": "title",
+              "hint": {
+                "type": "constant",
+                "value_type": "string",
+                "value": "Talent Name"
+              }
+            },
+            {
+              "id": "t_degree_edit",
+              "type": "select",
+              "stat": "talent_degree",
+              "options": "da_talent_degree",
+              "style": "dropdown"
+            },
+            {
+              "id": "t_class_edit",
+              "type": "text",
+              "text": {
+                "type": "stat",
+                "stat": "talent_class"
+              },
+              "edit_stat": "talent_class",
+              "style": "text",
+              "label": {
+                "type": "constant",
+                "value_type": "string",
+                "value": "Class"
+              }
+            },
+            {
+              "id": "t_req_edit",
+              "type": "text",
+              "text": {
+                "type": "stat",
+                "stat": "talent_requirement"
+              },
+              "edit_stat": "talent_requirement",
+              "style": "text",
+              "label": {
+                "type": "constant",
+                "value_type": "string",
+                "value": "Requirement"
+              }
+            },
+            {
+              "id": "t_desc_edit",
+              "type": "text",
+              "text": {
+                "type": "stat",
+                "stat": "talent_description"
+              },
+              "edit_stat": "talent_description",
+              "style": "text",
+              "hint": {
+                "type": "constant",
+                "value_type": "string",
+                "value": "Talent description..."
+              }
+            }
+          ]
+        },
+        "list_view": {
+          "id": "talent_list",
+          "type": "listItem",
+          "title": {
+            "type": "stat",
+            "stat": "talent_name"
+          },
+          "subtitle": {
+            "type": "enumeratedName",
+            "enumerated_type": "da_talent_degree",
+            "id": {
+              "type": "stat",
+              "stat": "talent_degree"
+            }
+          }
+        },
+        "search_item_view": {
+          "id": "talent_search",
+          "type": "listItem",
+          "title": {
+            "type": "stat",
+            "stat": "talent_name"
+          },
+          "subtitle": {
+            "type": "stat",
+            "stat": "talent_class"
+          },
+          "first_line_extra": {
+            "type": "enumeratedName",
+            "enumerated_type": "da_talent_degree",
+            "id": {
+              "type": "stat",
+              "stat": "talent_degree"
+            }
+          }
+        }
+      },
+      "weapon": {
+        "type": "Resource",
+        "id": "weapon",
+        "name": "Weapon",
+        "plural": "Weapons",
+        "core": true,
+        "color": "systemRed",
+        "display_view": {
+          "id": "weapon_display",
+          "type": "list",
+          "subviews": [
+            {
+              "id": "w_name",
+              "type": "text",
+              "text": {
+                "type": "stat",
+                "stat": "weapon_name"
+              },
+              "style": "headline"
+            },
+            {
+              "id": "w_group_row",
+              "type": "composite",
+              "row_only": true,
+              "subviews": [
+                {
+                  "id": "w_group_lbl",
+                  "type": "text",
+                  "text": {
+                    "type": "constant",
+                    "value_type": "string",
+                    "value": "Group: "
+                  },
+                  "style": "subhead",
+                  "bold": true
+                },
+                {
+                  "id": "w_group_val",
+                  "type": "text",
+                  "text": {
+                    "type": "enumeratedName",
+                    "enumerated_type": "da_weapon_group",
+                    "id": {
+                      "type": "stat",
+                      "stat": "weapon_group"
+                    }
+                  },
+                  "style": "subhead"
+                }
+              ]
+            },
+            {
+              "id": "w_dmg_row",
+              "type": "composite",
+              "row_only": true,
+              "subviews": [
+                {
+                  "id": "w_dmg_lbl",
+                  "type": "text",
+                  "text": {
+                    "type": "constant",
+                    "value_type": "string",
+                    "value": "Damage: "
+                  },
+                  "style": "text",
+                  "bold": true
+                },
+                {
+                  "id": "w_dmg_val",
+                  "type": "text",
+                  "text": {
+                    "type": "concat",
+                    "components": {
+                      "type": "list",
+                      "components": [
+                        {
+                          "type": "stat",
+                          "stat": "damage_dice"
+                        },
+                        {
+                          "type": "constant",
+                          "value_type": "string",
+                          "value": " + "
+                        },
+                        {
+                          "type": "stat",
+                          "stat": "damage_bonus"
+                        }
+                      ]
+                    }
+                  },
+                  "style": "text"
+                }
+              ]
+            },
+            {
+              "id": "w_stats_row",
+              "type": "composite",
+              "row_only": true,
+              "subviews": [
+                {
+                  "id": "w_min_str",
+                  "type": "stat",
+                  "stat": "weapon_min_str",
+                  "style": "block"
+                },
+                {
+                  "id": "w_cost_lbl",
+                  "type": "text",
+                  "text": {
+                    "type": "constant",
+                    "value_type": "string",
+                    "value": "Cost: "
+                  },
+                  "style": "text",
+                  "bold": true
+                },
+                {
+                  "id": "w_cost_val",
+                  "type": "text",
+                  "text": {
+                    "type": "stat",
+                    "stat": "weapon_cost"
+                  },
+                  "style": "text"
+                }
+              ]
+            },
+            {
+              "id": "w_divider",
+              "type": "divider"
+            },
+            {
+              "id": "w_notes",
+              "type": "text",
+              "text": {
+                "type": "stat",
+                "stat": "weapon_notes"
+              },
+              "style": "text"
+            }
+          ]
+        },
+        "edit_view": {
+          "id": "weapon_edit",
+          "type": "list",
+          "subviews": [
+            {
+              "id": "w_name_edit",
+              "type": "text",
+              "text": {
+                "type": "stat",
+                "stat": "weapon_name"
+              },
+              "edit_stat": "weapon_name",
+              "style": "title",
+              "hint": {
+                "type": "constant",
+                "value_type": "string",
+                "value": "Weapon Name"
+              }
+            },
+            {
+              "id": "w_group_edit",
+              "type": "select",
+              "stat": "weapon_group",
+              "options": "da_weapon_group",
+              "style": "dropdown"
+            },
+            {
+              "id": "w_dmg_edit",
+              "type": "text",
+              "text": {
+                "type": "stat",
+                "stat": "damage_dice"
+              },
+              "edit_stat": "damage_dice",
+              "style": "text",
+              "label": {
+                "type": "constant",
+                "value_type": "string",
+                "value": "Damage Dice (e.g. 1d6)"
+              }
+            },
+            {
+              "id": "w_dmgb_ticker",
+              "type": "ticker",
+              "stat": "damage_bonus",
+              "label": {
+                "type": "constant",
+                "value_type": "string",
+                "value": "Damage Bonus"
+              },
+              "min_value_allowed": -5,
+              "max_value_allowed": 10,
+              "should_auto_save": true
+            },
+            {
+              "id": "w_str_ticker",
+              "type": "ticker",
+              "stat": "weapon_min_str",
+              "label": {
+                "type": "constant",
+                "value_type": "string",
+                "value": "Min Strength"
+              },
+              "min_value_allowed": -2,
+              "max_value_allowed": 4,
+              "should_auto_save": true
+            },
+            {
+              "id": "w_cost_edit",
+              "type": "text",
+              "text": {
+                "type": "stat",
+                "stat": "weapon_cost"
+              },
+              "edit_stat": "weapon_cost",
+              "style": "text",
+              "label": {
+                "type": "constant",
+                "value_type": "string",
+                "value": "Cost"
+              }
+            },
+            {
+              "id": "w_wt_edit",
+              "type": "text",
+              "text": {
+                "type": "stat",
+                "stat": "weapon_weight"
+              },
+              "edit_stat": "weapon_weight",
+              "style": "text",
+              "label": {
+                "type": "constant",
+                "value_type": "string",
+                "value": "Weight (kg)"
+              }
+            },
+            {
+              "id": "w_notes_edit",
+              "type": "text",
+              "text": {
+                "type": "stat",
+                "stat": "weapon_notes"
+              },
+              "edit_stat": "weapon_notes",
+              "style": "text",
+              "hint": {
+                "type": "constant",
+                "value_type": "string",
+                "value": "Special properties, notes..."
+              }
+            }
+          ]
+        },
+        "list_view": {
+          "id": "weapon_list",
+          "type": "listItem",
+          "title": {
+            "type": "stat",
+            "stat": "weapon_name"
+          },
+          "subtitle": {
+            "type": "enumeratedName",
+            "enumerated_type": "da_weapon_group",
+            "id": {
+              "type": "stat",
+              "stat": "weapon_group"
+            }
+          },
+          "first_line_extra": {
+            "type": "concat",
+            "components": {
+              "type": "list",
+              "components": [
+                {
+                  "type": "stat",
+                  "stat": "damage_dice"
+                },
+                {
+                  "type": "constant",
+                  "value_type": "string",
+                  "value": " + "
+                },
+                {
+                  "type": "stat",
+                  "stat": "damage_bonus"
+                },
+                {
+                  "type": "constant",
+                  "value_type": "string",
+                  "value": " dmg"
+                }
+              ]
+            }
+          }
+        },
+        "search_item_view": {
+          "id": "weapon_search",
+          "type": "listItem",
+          "title": {
+            "type": "stat",
+            "stat": "weapon_name"
+          },
+          "subtitle": {
+            "type": "enumeratedName",
+            "enumerated_type": "da_weapon_group",
+            "id": {
+              "type": "stat",
+              "stat": "weapon_group"
+            }
+          },
+          "first_line_extra": {
+            "type": "stat",
+            "stat": "damage_dice"
+          },
+          "second_line_extra": {
+            "type": "stat",
+            "stat": "weapon_cost"
+          }
+        }
+      }
+    }
+  ],
+  "mechanics": [],
+  "dice": [],
+  "progression_systems": [],
+  "character_search_item_view": {
+    "id": "char_search_item",
+    "type": "listItem",
+    "title": {
+      "type": "stat",
+      "stat": "character_name"
+    },
+    "subtitle": {
+      "type": "stat",
+      "stat": "character_class"
+    }
+  },
+  "combat_system": {
+    "type": "CombatSystem",
+    "encounter_resolution_message": "The combat encounter has ended.",
+    "initiative_system": {
+      "type": "InitiativeSystem",
+      "when_to_set": "per_combat",
+      "has_turns": true,
+      "initiative_modifier": {
+        "type": "stat",
+        "stat": "dexterity"
+      }
+    }
+  }
+}
