@@ -1,0 +1,12 @@
+{
+  "systems": [
+    {
+      "id": "dragon_age",
+      "name": "Dragon Age RPG",
+      "abbreviation": "DA",
+      "version": "1.0.0",
+      "min_app_version": "1.0.0",
+      "path": "dragon_age"
+    }
+  ]
+}
